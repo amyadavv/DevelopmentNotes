@@ -30,11 +30,11 @@ function App() {
 }
 export default App;
 
-function Todo(proops) {
+function Todo(props) {
   return (
     <div>
-      <h1>{proops.title}</h1>
-      <h1>{proops.description}</h1>
+      <h1>{props.title}</h1>
+      <h1>{props.description}</h1>
     </div>
   )
 }
