@@ -238,3 +238,59 @@ Side Effects - In react the concept of side effect encompasses any operations th
 Anything that is not related to rendering (putting things on the DOM taking things out of the DOM) are called side effects. Specifically things like  whenever we try to fetch data from the backend or we try to create setTimeout and setInterval or we directly manipulate the DOM (which we should not do it) all of these can be consider as side effects. These aren't part of the main react rendering cycle
 
 Hooks - Hooks are a feature introduced in React 16.8 that allow you to use state and other React features without writing a class. They enable functional components to have access to stateful logic and lifecycle features, which were previously only possible in class components. This has led to a more concise and readable way of writing components in react.
+
+Common Hooks - useState, useEffect, useCallback, useMemo, useRef, useContext
+
+## useState
+
+Let's you describe the state of your app whenever state updates, it triggers a re-render which finally results in a DOM update. 
+
+## useEffect
+
+The 'useEffect' hook is a feature in React, a popular Javascript library for building user interfaces. It allows you to perform side effects in function components. Side effects are operations that can affect other components or can't be done during rendering, such as data fetching, subscriptions, or manually changing the DOM in React components. 
+The 'useEffect' hook serves the same purpose as 'componentDidMount', 'componentDidUpdate' and 'componentWillUnmount' in React class components, but unified into a single API. 
+
+The useEffect always run at the first render and will run again if the dependency array changes
+
+if there is any condition under which you want to hit the code again which is  inside the useEffect then use dependency array (put condition inside this array). So condition means state variable, dependency array always take state variable as a input so any time the state variable changes the code inside the useEffect reruns.
+
+Example : 
+
+import { useState, useEffect } from "react";
+import axios from "axios";
+function App() {
+  const [counter, setCounter] = useState(1);
+  return (
+    <div>
+      <button onClick={function() {
+        setCounter(1)
+      }}> 1 </button>
+      <button onClick={function() {
+        setCounter(2)
+      }}> 2 </button>
+      <button onClick={function() {
+        setCounter(3)
+      }}> 3 </button>
+      <Todo id={counter}></Todo>
+    </div>
+  )
+}
+function Todo({ id }) {
+  const [todo, setTodo] = useState([]);
+
+  useEffect(()=> {
+    axios.get("" + id)
+    .then(function(response) {
+      setTodos(response.data.todo)
+    })
+  },[id])
+  
+  return (
+    <div>
+      <h1>{todo.title}</h1>
+      <h2>{todo.description}</h2>
+    </div>
+  )
+}
+
+export default App;
