@@ -316,6 +316,8 @@ function App() {
     return count;
   }, [value])
 
+  // memoize the value across re-renders, only recalculate it if Value changes
+
 
   return (
     <div>
@@ -341,3 +343,182 @@ useReducer is least used hook.
 
 
 ## useCallback
+
+It is a hook in React, a popular JS library for building user interfaces. It is used to memoize functions, which can help in optimizing the performance of your application, especially in cases involving child components that rely on reference equality to prevent unnecessary renders. 
+
+
+// 1. In this code the child always re-render because the state variable changes and 'Child' is the child component of App so when ever the parent re-renders the child always re-renders no matter the props changes or not.  
+
+
+// import { useState, useEffect, useMemo, memo } from "react";
+
+// function App() {
+//   const [count, setCount] = useState(0);
+
+//   // function inputFunction () {
+//   //   console.log("Hii there");
+//   // }
+
+//   return ( 
+//     <div>
+//       <Child/>
+//       <button onClick={() => {
+//         setCount(count+1);
+//       }}> Click Me {count}</button>
+//     </div>
+//   )
+// }
+
+// const Child = () => {
+//   console.log("child render");
+//   return ( 
+//     <div>
+//       <button >Button clicked</button>
+//     </div>
+//   )
+// }
+
+// export default App;
+
+
+
+// 2. Now the memo does that the child component or any component it only renders if the props changes. 
+
+// import { useState, useEffect, useMemo, memo } from "react";
+
+// function App() {
+//   const [count, setCount] = useState(0);
+
+//   // function inputFunction () {
+//   //   console.log("Hii there");
+//   // }
+
+//   return ( 
+//     <div>
+//       <Child/>
+//       <button onClick={() => {
+//         setCount(count+1);
+//       }}> Click Me {count}</button>
+//     </div>
+//   )
+// }
+
+// const Child = memo ( () => {
+//   console.log("child render");
+//   return ( 
+//     <div>
+//       <button >Button clicked</button>
+//     </div>
+//   )
+// })
+
+// export default App;
+
+
+// 3. But now in this code the props does not changes we can easily see the code flow but the 'Child' still re-renders. It is because the function is stored in the memory and whenever re-renders happen the function address changes and memo think that the props changes so the 'Child' re-renders
+
+
+// import { useState, useEffect, useMemo, memo } from "react";
+
+// function App() {
+//   const [count, setCount] = useState(0);
+
+//   function inputFunction () {
+//     console.log("Hii there");
+//   }
+
+//   return ( 
+//     <div>
+//       <Child newFnc = {inputFunction}/>
+//       <button onClick={() => {
+//         setCount(count+1);
+//       }}> Click Me {count}</button>
+//     </div>
+//   )
+// }
+
+// const Child = memo ( ({newFnc}) => {
+//   console.log("child render");
+//   return ( 
+//     <div>
+//       <button onClick={newFnc} >Button clicked</button>
+//     </div>
+//   )
+// })
+
+// export default App;
+
+
+// 4. 
+
+
+
+
+
+import { useState, useEffect, useMemo, memo, useCallback } from "react";
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  const inputFunction = useCallback(() => {
+    console.log("Hii there");
+  },[])
+
+  // So this is now a function wrapped inside a useCallback and only if something in dependency array changes will be consider this inputFunction to change else this inputFunction is same across renders.
+  // We memoized this function, across re-render we will remember its original implementation we will not keep redefining the inputFunction unless any dependency changes 
+
+  return (
+    <div>
+      <Child newFnc={inputFunction} />
+      <button onClick={() => {
+        setCount(count + 1);
+      }}> Click Me {count}</button>
+    </div>
+  )
+}
+
+const Child = memo(({ newFnc }) => {
+  console.log("child render");
+  return (
+    <div>
+      <button onClick={newFnc} >Button clicked</button>
+    </div>
+  )
+})
+
+export default App;
+
+
+## Custom Hooks
+
+Just like useState, useEffect, you can write your own hooks. Only condition is - It should start with a 'use' (naming convention)
+
+We cannot define random function inside which we use useState we cannot do that if you want to ever use a hook the function inside which it is defined either needs to be a hook or needs to be a component. We cannot create a raw function and use useState inside.
+
+
+import { useEffect, useState } from "react"
+import axios from "axios";
+
+function useTodos () {
+   const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    axios.get ("")
+      .then(function (res) {
+        setTodos(res.data.todos);
+      })
+  }, [])
+  return todos;
+}
+
+function App() {
+
+  const todos = useTodos();
+ 
+
+  return (
+    <div>
+
+    </div>
+  )
+}
