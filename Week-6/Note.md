@@ -253,6 +253,7 @@ The 'useEffect' hook serves the same purpose as 'componentDidMount', 'componentD
 The useEffect always run at the first render and will run again if the dependency array changes
 
 if there is any condition under which you want to hit the code again which is  inside the useEffect then use dependency array (put condition inside this array). So condition means state variable, dependency array always take state variable as a input so any time the state variable changes the code inside the useEffect reruns.
+It is not necessary that the dependency is always take a state it can take another things maybe a variable its a very dangerous thing to do. So dependency array should be a state variable.
 
 Example : 
 
@@ -294,3 +295,49 @@ function Todo({ id }) {
 }
 
 export default App;
+
+## useMemo
+
+What memoization means? Its a mildly DSA concept. It means remembering some output given an input and not computing it again. It is very similar to caching 
+
+example :
+
+import { useState, useEffect, useMemo } from "react";
+import axios from "axios";
+function App() {
+  const [counter, setCounter] = useState(0);
+  const [value, setValue] = useState(1);
+
+  let counterM = useMemo(() => {
+    let count = 0;
+    for (let i = 1; i <= value; i++) {
+      count = count + i;
+    }
+    return count;
+  }, [value])
+
+
+  return (
+    <div>
+      <input onChange={function (e) {
+        setValue(e.target.value)
+      }} ></input>
+
+      <div>Sum from 1 to {value} is {count}</div>
+
+      <button onClick={function () { setCounter(counter + 1) }}>Counter ({counter})</button>
+    </div>
+  )
+
+
+
+}
+
+export default App;
+
+Anytime dependency array changes the useMemo run 
+
+useReducer is least used hook.
+
+
+## useCallback
