@@ -488,6 +488,80 @@ const Child = memo(({ newFnc }) => {
 
 export default App;
 
+if we use 'useCallback' we will get back function - function = useCallback
+if we use 'useMemo' we will get back number/string - number/string = useMemo
+
+
+## Extra things 
+
+// import { useEffect, useState } from "react"
+
+// function App() {
+//   const [count, setCount] = useState(0);
+//   return (
+//     <div>
+//       <button onClick={() => {
+//         setCount (count + 1);
+//         setCount (count + 1);
+//       }}> Click Me
+//       </button>
+//     </div>
+//   )
+// }
+
+// export default App;
+
+// When we click on the button it does not update to 2, it will update 1 by 1 means only add 1 at a time why? Because whenever we are updating the setCount it does not updated synchronously it is updating asynchronously. So the state does not immediately updated. It will be      setCount (count + 1); ( 0 + 1 )
+//        setCount (count + 1); ( 0 + 1 ) the count variable does not change immediately. So if you want to do update the state by 2 then do this 
+
+
+import { useEffect, useState } from "react"
+
+function App() {
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <button onClick={() => {
+        setCount (function (e) { return e + 1 });
+        setCount (function (e) { return e + 1 });
+      }}> Click Me {count}
+      </button>
+    </div>
+  )
+}
+
+export default App;
+
+
+import { useState, useCallback } from "react";
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  const handleClick = useCallback(() => {
+    console.log("Render")
+    setCount(count + 1);
+  }, [count]);
+
+  return (
+    <div>
+      <Child onClick={handleClick} />
+    </div>
+  )
+}
+function Child({ onClick }) {
+  return (
+    <button onClick={onClick}>Click Here</button>
+  )
+}
+export default App;
+
+// This is not infinitely rendering, anytime count changes handleClick ka signature changes this does not called (handleClick) so this function actually does not call it only called when we clicked on the 'Child' button which is why this is not infinity render. useCallback does not mean that if count is changed the inside code will run, it will only change the signature of the function (change the function looks like means reference different function), it does not call the function.
+
+Pure component is class based and memo is the same. They do the same thing.
+
+== for number integers it is equality by value ( let a = 1, let b =1, a==b is true)
+== for functions, objects, arrays it is equality by reference 
 
 ## Custom Hooks
 
@@ -522,3 +596,7 @@ function App() {
     </div>
   )
 }
+
+When you want to do async call you have to use useEffect and if something depends on something synchronously then we use useMemo. 
+We can also memoized object using useMemo
+
