@@ -600,3 +600,127 @@ function App() {
 When you want to do async call you have to use useEffect and if something depends on something synchronously then we use useMemo. 
 We can also memoized object using useMemo
 
+## Notes for 6.3 Class
+
+### Reconciliations
+
+When you are the developer in react you write some state management code, you give your state to react and react reconcile what should the DOM look like now and finally render things on the DOM. So what is reconciliation, it is the process of taking the current state finding the difference from the existing state reconciling what DOM the should look like right now and putting things on the DOM.
+
+Can you do DOM manipulation yourself - Yes
+Should you do it yourself - No
+Is it good for you to delegate the heavy task of calculating the DOM change to React - Yes
+What do you give to react - The state
+How often does react re-render - Any time state changes
+Does react have tricks to make calculations faster - Yes 
+
+
+Also react does not do DOM manipulation, the reactDOM library does. 
+
+Re-render - If Function app running means this component re-rendered.
+
+#### useMemo
+
+
+ import { useEffect, useMemo, useState } from 'react'
+
+function App() {
+  const [exchange1Data, setExchange1Data] = useState({});
+  const [exchange2Data, setExchange2Data] = useState({});
+  const [bankData, setBankData] = useState({});
+
+  useEffect(() => {
+    // Some operation to get the data
+    setExchange1Data({
+      returns: 100
+    });
+  }, [])
+
+  useEffect(() => {
+    // Some operation to get the data
+    setExchange2Data({
+      returns: 100
+    });
+  }, [])
+
+  useEffect(() => {
+    // Some operation to get the data
+    setTimeout(() => {
+      setBankData({
+        income: 100
+      });
+    },5000)
+  }, [])
+
+  const cryptoReturns = useMemo(()=> {
+    return exchange1Data.returns + exchange2Data.returns;
+  },[exchange1Data, exchange2Data]) 
+  
+  const incomeTax = (cryptoReturns + bankData.income) * 0.3
+
+  return (
+    <div>
+        hi there, your income tax returns are {incomeTax}
+    </div>
+  )
+}
+
+export default App
+
+#### useCallback
+
+If you ever want to memoize a function, we use useCallback. useCallback is not about minimizing the amout of code that is run. useCallback is about not rendering a child component, if the function has not/does not need to change across renders. 
+
+Example : 
+
+
+ import { useCallback, useEffect, useMemo, useState } from 'react'
+
+function App() {
+  const [exchange1Data, setExchange1Data] = useState({});
+  const [exchange2Data, setExchange2Data] = useState({});
+  const [bankData, setBankData] = useState({});
+
+  useEffect(() => {
+    // Some operation to get the data
+    setExchange1Data({
+      returns: 100
+    });
+  }, [])
+
+  useEffect(() => {
+    // Some operation to get the data
+    setExchange2Data({
+      returns: 100
+    });
+  }, [])
+
+  useEffect(() => {
+    // Some operation to get the data
+    setTimeout(() => {
+      setBankData({
+        income: 100
+      });
+    },5000)
+  }, [])
+
+  const calculateCryptoReturns = useCallback(function () {
+    return exchange1Data.returns + exchange2Data.returns;
+  },[exchange1Data, exchange2Data])
+  
+  return (
+    <div>
+        <CryptoGainsCalculator calculateCryptoReturns={calculateCryptoReturns}/>
+    </div>
+  )
+}
+
+const CryptoGainsCalculator = memo (function ({calculateCryptoReturns}) {
+    return <div>
+        Your crypto return are {calculateCryptoReturns()}
+    </div>
+})
+
+export default App
+
+
+#### useRef
