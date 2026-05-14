@@ -724,3 +724,34 @@ export default App
 
 
 #### useRef
+
+It lets you do two thing:
+
+1. This hook is used to get reference to DOM elements. (most important use case)
+2. Maintain a variable across re-renders.
+
+Example: 
+
+import { useEffect, useRef, useState } from "react"
+
+function App() {
+    const [incomeTax, setIncomeTax] = useState(20000);
+    const divRef = useRef();
+
+    useEffect(() => {
+        setTimeout(() => {
+            console.log(divRef.current);
+            divRef.current.innerHTML = 10
+        }, 5000)
+    }, []);
+    // why use current because current used to access to the current reference of that specific div  
+    return (
+        <div>
+            Hi there, your income tax are <div ref={divRef}>{incomeTax}</div>
+
+            <div> // The divRef which I defined on the top contain the reference of this div element. </div>
+
+        </div>
+    )
+}
+export default App;
