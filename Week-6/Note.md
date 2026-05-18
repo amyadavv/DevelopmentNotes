@@ -722,6 +722,46 @@ const CryptoGainsCalculator = memo (function ({calculateCryptoReturns}) {
 
 export default App
 
+Example: 
+
+import { useCallback, useState } from "react";
+
+// Create a counter component with increment and decrement functions. Pass these functions to a child component which has buttons to perform the increment and decrement actions. Use useCallback to ensure that these functions are not recreated on every render.
+
+export function Assignment1() {
+    const [count, setCount] = useState(0);
+
+    // Your code starts here
+    const handleIncrement = useCallback(() => {
+        // setCount(count + 1);
+        // This will use the count the state variable to update the state. Uses count from the closure (the value captured when this render happened). If multiple updates happen quickly, this can use an old value (stale state). To use this we need to add count in the dependency array if not then this function wont run again. 
+        setCount(function (currentCount) {
+            return currentCount + 1;
+        })
+        // This will use current count for the increment. React passes the latest state value into currentCount at update time. Safe for batched updates and repeated clicks.
+    }, [])
+
+    const handleDecrement = useCallback(() => {
+        setCount(currentCount => currentCount - 1)
+    }, [])
+    // Your code ends here
+
+    return (
+        <div>
+            <p>Count: {count}</p>
+            <CounterButtons onIncrement={handleIncrement} onDecrement={handleDecrement} />
+        </div>
+    );
+};
+
+const CounterButtons = memo(({ onIncrement, onDecrement }) => (
+    <div>
+        <button onClick={onIncrement}>Increment</button>
+        <button onClick={onDecrement}>Decrement</button>
+    </div>
+));
+
+
 
 #### useRef
 
@@ -755,3 +795,104 @@ function App() {
     )
 }
 export default App;
+
+Example: 
+
+import { useEffect, useRef } from "react";
+
+// Create a component with a text input field and a button. When the component mounts or the button is clicked, automatically focus the text input field using useRef.
+
+export function Assignment1() {
+    const divRef = useRef();
+
+    useEffect(() => {
+        divRef.current.focus();
+    }, []);
+
+    const handleButtonClick = () => {
+        divRef.current.focus();
+    };
+
+    return (
+        <div>
+            <input type="text" placeholder="Enter text here" ref={divRef} />
+            <button onClick={handleButtonClick}>Focus Input</button>
+        </div>
+    );
+};
+
+Example 2: 
+
+import React, { useState, useCallback, useRef } from 'react';
+
+// Create a component that tracks and displays the number of times it has been rendered. Use useRef to create a variable that persists across renders without causing additional renders when it changes.
+
+export function Assignment2() {
+    const [, forceRender] = useState(0);
+    const countRender = useRef(0);
+
+    const handleReRender = () => {
+        // Update state to force re-render
+        forceRender(Math.random());
+    };
+    countRender.current = countRender.current + 1;
+
+    return (
+        <div>
+            <p>This component has rendered {countRender.current} times.</p>
+            <button onClick={handleReRender}>Force Re-render</button>
+        </div>
+    );
+};
+
+
+// `useRef` can store a value that survives re-renders, but changing it does not re-render the UI.
+
+// Think of it like a private notebook:
+// 1. React does not erase it on every render.
+// 2. Writing in that notebook does not tell React to repaint the screen.
+
+// Why this is useful in your Assignment2:
+// 1. You want to count how many times component rendered.
+// 2. If you use `useState` for this count, updating it will cause another render, which can create a loop/confusion.
+// 3. If you use `useRef`, you can increment the count safely without triggering extra renders.
+
+// Typical pattern:
+// - `const renderCount = useRef(0);`
+// - inside render/effect: `renderCount.current += 1;`
+// - show it on screen when some other render happens.
+
+// So main difference:
+// - `useState`: stores value + causes re-render on update.
+// - `useRef`: stores value + does NOT cause re-render on update.
+
+
+### Reducer function 
+
+array.reduce((accumulator, currentValue) => {
+  // logic
+  return accumulator;
+}, initialValue);
+
+Parameters:
+accumulator → stores the result of previous iterations
+currentValue → current element being processed
+initialValue → starting value (optional but recommended)
+
+example: 
+
+const numbers = [1, 2, 3, 4];
+
+const sum = numbers.reduce((acc, curr) => {
+  return acc + curr;
+}, 0);
+
+console.log(sum); // 10
+
+👉 How it works:
+
+acc=0, curr=1 → 1
+acc=1, curr=2 → 3
+acc=3, curr=3 → 6
+acc=6, curr=4 → 10
+ 
