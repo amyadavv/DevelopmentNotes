@@ -220,3 +220,153 @@ How to use Asynchronous Data Queries ?
 Recoil provides a way to map state and derived state to React components via a data-flow graph. What's really powerful is that the functions in the graph can also be asynchronous. This makes it easy to use asynchronous functions in synchronous React component render functions. 
 
 Selectors can be used as one way to incorporate asynchronous data into the recoil data-flow graph. 
+
+When we know that default value of an atom is come from an async function the following way to write an atom with async call: 
+
+export const notification = atom({
+    key: "networkAtom",
+    default: selector({
+        key: "networkAtomSelector",
+        get: async () => {
+            const res = await axios.get("https://sum-server.100xdevs.com/notifications")
+            return res.data
+        }
+    })
+})
+
+In atom the default value is an selector for a async call because we cannot have async default value
+
+Example: 
+
+import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil"
+import { notification, totalNotificationSelector } from "./store/atoms/count"
+import { useEffect } from "react";
+import axios from "axios";
+
+function App() {
+    return (
+        <RecoilRoot>
+            <MainApp />
+        </RecoilRoot>
+    )
+}
+
+function MainApp() {
+    const [networkCount, setNetworkCount] = useRecoilState(notification);
+    const totalNotificationCount = useRecoilValue(totalNotificationSelector);
+
+    return (
+        <div>
+            <button>Home</button>
+
+            <button>My Network ({networkCount.network >= 100 ? "99+" : networkCount.network})</button>
+            <button>Jobs ({networkCount.jobs})</button>
+            <button>Messaging ({networkCount.messaging})</button>
+            <button>Notifications ({networkCount.notification})</button>
+
+            <button>Me ({totalNotificationCount})</button>
+        </div>
+    )
+}
+
+export default App;
+
+Atom file 
+
+import axios from "axios";
+import { atom, selector } from "recoil";
+
+export const notification = atom({
+    key: "networkAtom",
+    default: selector({
+        key: "networkAtomSelector",
+        get: async () => {
+
+            await new Promise (r => setTimeout(r,5000)) // artificial delay
+
+            const res = await axios.get("https://sum-server.100xdevs.com/notifications")
+            return res.data
+        }
+    })
+})
+
+export const totalNotificationSelector = selector({
+    key: "totalNotificationSelector",
+    get: ({ get }) => {
+        const allNotifications = get(notification);
+        return allNotifications.network + allNotifications.jobs + allNotifications.messaging + allNotifications.notification
+    }
+})
+
+# Atom Family
+
+Problem - Sometimes you need more than one atom for your use case. For example - Creating a todo application
+
+Questions - Create a component that takes a todo id as input, and renders the TODO. You need to store the Todo in an atom (can't use useState). All the TODOs can be hardcoded as a variable. 
+
+Example: {
+    "todo": {
+        "id":2,
+        "title": "Todo 2",
+        "description": "This is todo 2",
+        "completed":false
+    }
+}
+
+Would you have a single atom?
+Would you have one atom per todo?
+How would you create (and delete) todos dynamically?
+
+Rather than subscribing to the atom we will subscribe to the atom family. Means whenever we know multiple atoms, when we have to create one atom per item than we create an atom family. If a components wants a new atom for inputs so we need to give input atom family will give an atom for that input
+Atom Family lets you dynamically create multiple atoms.
+
+ Example :
+
+ import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
+import { todosAtomFamily } from "./store/atoms/Count";
+
+function App () {
+    return <RecoilRoot>
+        <Todo id={1}></Todo>
+        <Todo id={2}></Todo>
+    </RecoilRoot>
+}
+
+function Todo ({id}) {
+    const todo = useRecoilValue(todosAtomFamily(id));
+
+    return (
+        <div>
+            {todo.title}
+            {todo.description}
+            <br/>
+        </div>
+    )
+}
+
+export default App;
+
+Atom file
+
+
+import { atomFamily } from "recoil";
+import { TODOS } from "./todos";
+
+export const todosAtomFamily = atomFamily({
+    key: "todosAtomFamily",
+    default: id => {
+        return TODOS.find(x => x.id === id)
+    }
+})
+
+todo file 
+
+export const TODOS = [{
+    id: 1,
+    title: "Go to Gym",
+    description: "Hit the gym from 7-9"
+}, {
+    id: 2,
+    title: "Go to eat food",
+    description: "Eat food from 9-10"
+}]
