@@ -370,3 +370,143 @@ export const TODOS = [{
     title: "Go to eat food",
     description: "Eat food from 9-10"
 }]
+
+
+# Selector family 
+
+Atom/atom family cannot have async backend calls in their default value. They need to use selector.
+
+Example: 
+import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
+import { todosAtomFamily } from "./store/atoms/Count";
+
+function App () {
+    return <RecoilRoot>
+        <Todo id={1}></Todo>
+        <Todo id={2}></Todo>
+    </RecoilRoot>
+}
+
+function Todo ({id}) {
+    const todo = useRecoilValue(todosAtomFamily(id));
+
+    return (
+        <div>
+            {todo.title}
+            {todo.description}
+            <br/>
+        </div>
+    )
+}
+
+export default App;
+
+Atom file: 
+
+import { atomFamily, selectorFamily } from "recoil";
+import { axios } from "axios";
+
+export const todosAtomFamily = atomFamily({
+    key: "todosAtomFamily",
+    default: selectorFamily({
+        key: "todoSelectorFamily",
+        get: (id) => async ({get}) => {
+            const res = await axios.get(`https://sum-server.100xdevs.com/todo?id=${id}`);
+            return res.data.todo;
+        }
+    })
+});
+
+
+Why we would not use selector here, because whenever we use atomFamily use selectorFamily because if we don't then we are only creating single selector. As we learn atomFamily will create multiple atoms and if we use selector instead of selector family then the selector will be same to all the atoms.
+
+# useRecoilStateLoadable, useRecoilValueLoadable
+
+What happens when the values aren't loaded immediately?
+For example, the TODOS that are coming back from the server?
+How can we show loader on screen when that happens rather than an empty state?
+
+We can also do it with Suspense API.
+
+useRecoilStateLoadable returns few things.
+const [todo, setTodo] = useRecoilStateLoadable (todosAtomFamily(id));
+This todo is no longer our set of todos. It is an object with has a few things - 
+{
+    contents
+    state  
+}
+state represents weather or not the api call is resolved/ api call returned value or not. 
+If you log state you will see first it is 'loading' and when api is resolved then the log is 'hasValue'.
+
+useRecoilValueLoadable is used when we just need the value
+
+Example :
+
+
+import { RecoilRoot, useRecoilState, useRecoilValue, useRecoilStateLoadable, useRecoilValueLoadable } from "recoil";
+import { todosAtomFamily } from "./store/atoms/Count";
+
+function App() {
+    return <RecoilRoot>
+        <Todo id={1}></Todo>
+        <Todo id={2}></Todo>
+    </RecoilRoot>
+}
+
+function Todo({ id }) {
+    const [todo, setTodo] = useRecoilStateLoadable(todosAtomFamily(id));
+    console.log(todo.state);
+
+    if (todo.state === "loading") {
+        return <div>
+            loading....
+        </div>
+    } else if (todo.state === "hasValue") {
+        return (
+            <div>
+                {todo.contents.title}
+                {todo.contents.description}
+                <br />
+            </div>
+        )
+    } else if (todo.state === "hasError") {
+        return ( 
+            <div>Error while getting data from backen </div>
+        )
+    }
+    // const [todo, setTodo] = useRecoilValueLoadable(todosAtomFamily(id));
+    // console.log(todo.state);
+
+    // if (todo.state === "loading") {
+    //     return <div>
+    //         loading....
+    //     </div>
+    // } else if (todo.state === "hasValue") {
+    //     return (
+    //         <div>
+    //             {todo.contents.title}
+    //             {todo.contents.description}
+    //             <br />
+    //         </div>
+    //     )
+    // }
+}
+
+export default App;
+
+Atom file 
+
+
+import { atomFamily, selectorFamily } from "recoil";
+import { axios } from "axios";
+
+export const todosAtomFamily = atomFamily({
+    key: "todosAtomFamily",
+    default: selectorFamily({
+        key: "todoSelectorFamily",
+        get: (id) => async ({get}) => {
+            const res = await axios.get(`https://sum-server.100xdevs.com/todo?id=${id}`);
+            return res.data.todo;
+        }
+    })
+});

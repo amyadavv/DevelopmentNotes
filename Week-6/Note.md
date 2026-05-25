@@ -149,6 +149,8 @@ function CreateTodo({title, description}) {
 }
 export default App;
 
+We cannot print the key on the DOM
+
 ## Wrapper Components 
 
 Component that takes other component as an input and render it correctly.
@@ -182,7 +184,7 @@ function TextComponent() {
 export default App;
 
 
-The read wrapper:
+The real wrapper:
 
 Whenever you write a component inside which you put bunch of children could be a string could be a span or could be a another component so we can access the above whole thing as a children variable into that component in which it is passed.
 
@@ -225,7 +227,7 @@ useEffect(() => {
         const json = await res.json();
         setTodos(json.todos);
     })
-}, []) // This is the dependency array so in this array if this changes maybe we put state so when a state update then this useEffect will run again. So this array represents when useEffect run. If we do not pass it the useEffect will run infinitely.
+}, []) // This is the dependency array so in this array if this changes, maybe we put state so when a state update then this useEffect will run again. So this array represents when useEffect run. If we do not pass it the useEffect will run on every render.
 
 you cannot async the useEffect function it will fail (useEffect( async () {}))
 If you want to do it async useEffect then use library 'useAsyncEffect'
