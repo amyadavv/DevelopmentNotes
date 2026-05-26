@@ -413,7 +413,6 @@ It is a hook in React, a popular JS library for building user interfaces. It is 
 //     </div>
 //   )
 // })
-
 // export default App;
 
 
@@ -569,7 +568,7 @@ Pure component is class based and memo is the same. They do the same thing.
 
 Just like useState, useEffect, you can write your own hooks. Only condition is - It should start with a 'use' (naming convention)
 
-We cannot define random function inside which we use useState we cannot do that if you want to ever use a hook the function inside which it is defined either needs to be a hook or needs to be a component. We cannot create a raw function and use useState inside.
+We cannot define random function inside which we use useState we cannot do that if you want to ever use a hook, the function inside which it is defined either needs to be a hook or needs to be a component. We cannot create a raw function and use useState inside.
 
 
 import { useEffect, useState } from "react"
