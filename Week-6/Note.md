@@ -598,6 +598,34 @@ function App() {
   )
 }
 
+Another Example : 
+
+import { useEffect, useState } from "react"
+
+function useCounter() {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        setCount(count + 1)
+        console.log("Counter update" + count);
+    }, [])
+
+    return [count, setCount];
+}
+
+function App() {
+    const [counter, setCounter] = useCounter();
+    return (
+        <div>
+            <button onClick={function () {
+                setCounter(counter + 1)
+            }} > Click Me {counter} </button>
+        </div>
+    )
+}
+
+export default App;
+
 When you want to do async call you have to use useEffect and if something depends on something synchronously then we use useMemo. 
 We can also memoized object using useMemo
 
