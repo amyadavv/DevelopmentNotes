@@ -36,12 +36,31 @@ react-router-dom
 
 #### Code for routing
 
-function App () {
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+export default function App() {
     return (
         <BrowserRouter>
-            <Route path="/dashboard" element={<Dashboard/>} />
-            <Route path="/" element={<Landing/>} />
+            <Routes>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/Home" element={<Home />}></Route>
+            </Routes>
         </BrowserRouter>
+    )
+}
+
+function Dashboard() {
+    return (
+        <div>
+            Dashboard
+        </div>
+    )
+}
+function Home() {
+    return (
+        <div>
+            Home
+        </div>
     )
 }
 
