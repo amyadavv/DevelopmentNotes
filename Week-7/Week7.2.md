@@ -218,6 +218,10 @@ export const countAtom = atom({
 - Selector - A selector represents a piece of derived state. You can think of derived state as the output of passing state to a pure function that derives a new value from the said state. 
 When you know something completely depends on another state variable.
 
+or 
+
+A selector is a derived state. It takes data from one or more atoms (or other selectors), performs some calculation, and returns a new value. Think of it as, Selector = Computed value based on existing state
+
 
 import { RecoilRoot, useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { countAtom, evenSelector } from "./store/atoms/count";
@@ -240,6 +244,26 @@ function Count() {
         <div>
             <Buttons></Buttons>
             <CountRenderer></CountRenderer>
+        </div>
+    )
+}
+
+function Buttons() {
+    const setCount = useSetRecoilState(countAtom);
+    // using this the re-rendering of buttons is also stop
+    console.log("Re-rendering of buttons")
+    return (
+        <div>
+            <button onClick={function () {
+                setCount(function (c) {
+                    return c + 1;
+                })
+            }} >Increase</button>
+            <button onClick={function () {
+                setCount(function (c) {
+                    return c - 1;  // this does not required the count, it will get the current value and update it.
+                })
+            }} >Decrease</button>
         </div>
     )
 }
@@ -269,25 +293,6 @@ function EvenCountRender () {
     )
 }
 
-function Buttons() {
-    const setCount = useSetRecoilState(countAtom);
-    // using this the re-rendering of buttons is also stop
-    console.log("Re-rendering of buttons")
-    return (
-        <div>
-            <button onClick={function () {
-                setCount(function (c) {
-                    return c + 1;
-                })
-            }} >Increase</button>
-            <button onClick={function () {
-                setCount(function (c) {
-                    return c - 1;  // this does not required the count, it will get the current value and update it.
-                })
-            }} >Decrease</button>
-        </div>
-    )
-}
 
 export default App;
 
