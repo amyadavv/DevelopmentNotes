@@ -1,6 +1,5 @@
 # Notes for 7.1
 
-
 # Routing
 
 1. Single page application 
@@ -18,6 +17,7 @@
 - A bundle is a set of JavaScript (and sometimes CSS) files sent to the browser.
 - This bundle contains your app code, components, and logic.
 - Once the bundle is loaded, the browser can run most of the app without asking the server for every small page change.
+- If the app uses code splitting/lazy loading, only the required bundle is downloaded first, and additional bundles are fetched when needed.
 
 3. Client-side Routing
 - Routing means deciding what to show for a URL path (like `/home`, `/about`, `/profile`).

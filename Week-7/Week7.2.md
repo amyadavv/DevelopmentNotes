@@ -54,9 +54,9 @@ This is a common performance gotcha. If you have a large subtree under a Provide
 import React, { createContext, useContext, useState } from "react";
 
 // 1. Create the context
-const UserContext = createContext(null);
+const UserContext = createContext(null); // Think of this as creating a global communication channel.
 
-// 2. Create a Provider component
+// 2. Create a Provider component. This is where actual data is stored.
 function UserProvider({ children }) {
   const [user, setUser] = useState({ name: "Alice", role: "Admin" });
 
