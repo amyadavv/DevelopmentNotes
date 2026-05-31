@@ -87,7 +87,7 @@ function MainApp() {
     const totalNotificationCount = useMemo(()=> {
         return networkNotificationCount + jobsCount + messageCount + notificationCount;
     },[networkNotificationCount, jobsCount, messageCount, notificationCount]) 
-    // using this we can use this logic outside the component so that's why we use selector
+    // using this we can not5 use this logic outside the component so that's why we use selector
 
     return (
         <div>
@@ -302,7 +302,7 @@ export const totalNotificationSelector = selector({
 
 Problem - Sometimes you need more than one atom for your use case. For example - Creating a todo application
 
-Questions - Create a component that takes a todo id as input, and renders the TODO. You need to store the Todo in an atom (can't use useState). All the TODOs can be hardcoded as a variable. 
+Questions - Create a component that takes a todo id as input, and renders the TODO. You need to store the Todo in an atom (can't use useState). All the TODOs can't be hardcoded as a variable. 
 
 Example: {
     "todo": {
