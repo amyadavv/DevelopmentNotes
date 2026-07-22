@@ -63,3 +63,16 @@ sendChatSlowMode("Hlo ji");
 
 // That is THROTTLE.
 
+// If you use a throttle with a 3-second gap, then:
+
+// the first request is executed
+// any other requests that come within those 3 seconds are ignored
+// after 3 seconds, the next request can run again
+// So it allows only one request to execute in a given time window.
+
+// Example:
+
+// 0s → request runs
+// 1s → ignored
+// 2s → ignored
+// 3s → allowed again
