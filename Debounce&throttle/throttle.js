@@ -1,11 +1,25 @@
+// Throttle is a technique that allows a function to run at most once in a fixed time interval, no matter how many times it is triggered.
+
 function throttle (fn, delay) {
     let lastCall = 0;
+    // THROTTLE LEARNING NOTES
+    // 1) throttle(fn, delay) runs once when you create a throttled function.
+    // 2) It returns a new wrapper function (closure).
+    // 3) That wrapper remembers `lastCall` between calls.
+    // 4) `lastCall` is NOT reset on every wrapper call.
+    // 5) `lastCall` resets only when you create a NEW throttled instance.
+    // Return #1: throttle(...) returns this wrapper function.
     return function (...args) {
         const now = Date.now();
+        // `lastCall` lives inside closure memory for this specific throttled function.
+        // It starts at 0 only once: when throttle(...) is executed.
         if(now - lastCall < delay) {
+            // Return #2: block this call because delay window is not completed.
+            // `lastCall` stays unchanged on blocked calls.
             return;
         } 
         lastCall = now;
+        // Return #3: execute original function and pass its return value back.
         return fn(...args);
     };   
 }
@@ -15,6 +29,11 @@ function sendChatMessage ( message ) {
 }
 
 const sendChatSlowMode = throttle(sendChatMessage,1000);
+// Important closure behavior:
+// Calling sendChatSlowMode many times does NOT recreate `lastCall`.
+// `lastCall` remains shared inside this one returned wrapper.
+// If you do `const another = throttle(sendChatMessage, 1000)`,
+// then `another` gets its own fresh `lastCall = 0`.
 
 sendChatSlowMode("Hi 1");
 sendChatSlowMode("Hi");
