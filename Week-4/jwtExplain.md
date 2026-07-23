@@ -77,35 +77,11 @@ Because:
 
 ---
 
-If you want, I can show you a quick demo of:
-
-* decoding a JWT
-* and why tampering breaks it
-
-That usually makes it 100% clear.
-
-
-
-
-Great—let’s walk through a **practical, real-world demo** so it becomes crystal clear.
-
----
 
 ## ✅ Step 1: Example JWT
 
-Here’s a sample token:
+Here’s a sample token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJ1c2VySWQiOiIxMjMiLCJyb2xlIjoiYWRtaW4ifQabc123signature
 
-```
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
-.
-eyJ1c2VySWQiOiIxMjMiLCJyb2xlIjoiYWRtaW4ifQ
-.
-abc123signature
-```
-
-(Formatted for readability)
-
----
 
 ## ✅ Step 2: Decode it (what attacker can do)
 
