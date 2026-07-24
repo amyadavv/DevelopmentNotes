@@ -304,7 +304,7 @@ What memoization means? Its a mildly DSA concept. It means remembering some outp
 
 example :
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import axios from "axios";
 function App() {
   const [counter, setCounter] = useState(0);
@@ -319,22 +319,20 @@ function App() {
   }, [value])
 
   // memoize the value across re-renders, only recalculate it if Value changes
+  // e.target.value is whatever the user just typed.
 
 
   return (
     <div>
       <input onChange={function (e) {
-        setValue(e.target.value)
+        setValue(e.target.value)             
       }} ></input>
 
-      <div>Sum from 1 to {value} is {count}</div>
+      <div>Sum from 1 to {value} is {counterM}</div>
 
       <button onClick={function () { setCounter(counter + 1) }}>Counter ({counter})</button>
     </div>
   )
-
-
-
 }
 
 export default App;
@@ -451,10 +449,6 @@ It is a hook in React, a popular JS library for building user interfaces. It is 
 
 
 // 4. 
-
-
-
-
 
 import { useState, useEffect, useMemo, memo, useCallback } from "react";
 
