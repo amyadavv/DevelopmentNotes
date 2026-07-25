@@ -223,12 +223,6 @@ export default App;
 It helps to teleport data to the components in the tree that need it without passing props.
 If you use the context api, you are pushing your state management outside the core react components. 
 If you ever want to use context api, to teleport any state variable directly to a component, you need to make sure that component is wrap inside the 'provider' (provider - something that provide the context value later on). You need to wrap all the component that need to use the state inside the provider. When you initialize the createContext(), so this will return an object which has a provider in it.
-
-
-
-
-
-
  
 #### Extra
 
