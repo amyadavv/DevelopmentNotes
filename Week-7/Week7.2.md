@@ -1,4 +1,4 @@
-# React Context API
+ # React Context API
 
 ## What is Context API?
 
@@ -151,6 +151,8 @@ A cleaner way to store the state of your app. Until now, the cleanest thing you 
 
 Example- 
 
+``` jsx
+
 import { RecoilRoot, useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { countAtom } from "./store/atoms/count";
 
@@ -214,6 +216,7 @@ export const countAtom = atom({
     key: 'countAtom',  // uniques way to identify an atom.
     default: 0   // what you want the default value of a specific atom will be
 })
+```
 
 - Selector - A selector represents a piece of derived state. You can think of derived state as the output of passing state to a pure function that derives a new value from the said state. 
 When you know something completely depends on another state variable.
