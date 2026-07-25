@@ -34,12 +34,13 @@ searchWithDebounce('Hard JS Interview question for practice');
 
 // Learning about args:
 // args means arguments.
-// In return function (...args), the three dots are called the rest parameter.
+// In return function (...args), the three dots are called the spread parameter.
 // It collects all values passed to searchWithDebounce into an array.
 // Example: searchWithDebounce('Hard JS') makes args equal to ['Hard JS'].
 // Later, fn(...args) uses the spread operator to pass those values back to the original function.
 // So fn(...args) becomes search('Hard JS').
 // This makes debounce reusable for any function, even if that function takes many arguments.
+// searchWithDebounce("Amit",24,"India");
 
 // Flow of this code:
 // debounce(search, 1000) means:
