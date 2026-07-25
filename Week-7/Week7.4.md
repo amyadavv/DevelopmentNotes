@@ -42,6 +42,7 @@ export default App;
 
 Atom file 
 
+``` jsx
 
 import { atom } from "recoil";
 
@@ -61,6 +62,8 @@ export const messageAtom = atom({
     key: "messageAtom",
     default: 4
 })
+
+```
 
 # Selector 
 
