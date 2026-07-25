@@ -3,7 +3,7 @@
 An atom is the smallest unit of state that you can store similar to useState. 
 
 Example: 
-
+``` jsx
 import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil"
 import { jobAtom, messageAtom, notificationAtom } from "./store/atoms/count"
 
@@ -37,6 +37,7 @@ function MainApp() {
 }
 
 export default App;
+```
 
 
 Atom file 
