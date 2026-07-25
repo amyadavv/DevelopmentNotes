@@ -710,7 +710,7 @@ function App() {
 
   useEffect(() => {
     // Some operation to get the data
-    setExchange1Data({
+    setExchange1Data({ 
       returns: 100
     });
   }, [])
