@@ -200,6 +200,8 @@ export default App;
 
 Count file: 
 
+``` jsx
+
 import { atom, selector } from "recoil";
 
 export const notification = atom({
@@ -220,8 +222,9 @@ export const totalNotificationSelector = selector({
     }
 })
 
+```
 
-How to use Asynchronous Data Queries ?
+## How to use Asynchronous Data Queries ?
 
 Recoil provides a way to map state and derived state to React components via a data-flow graph. What's really powerful is that the functions in the graph can also be asynchronous. This makes it easy to use asynchronous functions in synchronous React component render functions. 
 
@@ -328,6 +331,8 @@ Atom Family lets you dynamically create multiple atoms.
 
  Example :
 
+ ```jsx
+
  import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
 import { todosAtomFamily } from "./store/atoms/Count";
 
@@ -352,8 +357,11 @@ function Todo ({id}) {
 
 export default App;
 
+```
+
 Atom file
 
+```jsx
 
 import { atomFamily } from "recoil";
 import { TODOS } from "./todos";
@@ -377,12 +385,16 @@ export const TODOS = [{
     description: "Eat food from 9-10"
 }]
 
+```
+
 
 # Selector family 
 
 Atom/atom family cannot have async backend calls in their default value. They need to use selector.
 
 Example: 
+
+``` jsx
 import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
 import { todosAtomFamily } from "./store/atoms/Count";
 
@@ -407,7 +419,11 @@ function Todo ({id}) {
 
 export default App;
 
+```
+
 Atom file: 
+
+```jsx
 
 import { atomFamily, selectorFamily } from "recoil";
 import { axios } from "axios";
@@ -423,6 +439,7 @@ export const todosAtomFamily = atomFamily({
     })
 });
 
+```
 
 Why we would not use selector here, because whenever we use atomFamily use selectorFamily because if we don't then we are only creating single selector. As we learn atomFamily will create multiple atoms and if we use selector instead of selector family then the selector will be same to all the atoms.
 
