@@ -337,6 +337,19 @@ How would you create (and delete) todos dynamically?
 Rather than subscribing to the atom we will subscribe to the atom family. Means whenever we know multiple atoms, when we have to create one atom per item than we create an atom family. If a components wants a new atom for inputs so we need to give input atom family will give an atom for that input
 Atom Family lets you dynamically create multiple atoms.
 
+Why use atomFamily. Use it when you want:
+- many similar items
+- separate state per item
+- independent subscriptions and updates
+- lower re-render cost for single-item changes
+
+Example cases:
+- each todo has its own editing state
+- each user has its own settings object
+- each row in a table has independent expanded/collapsed state
+
+
+
  Example :
 
  ```jsx
