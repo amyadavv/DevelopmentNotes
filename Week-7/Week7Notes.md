@@ -164,6 +164,7 @@ Lazy loading means loading code only when needed instead of sending everything i
 So to use lazy component we have to wrap it inside a 'Suspense' which is another api that react provide, which is used to for the cases like asynchronous component fetching or asynchronous data fetching which basically means that we do not have the access to the dashboard or landing component immediately on the frontend. The lazy component need to get back data from the backend so it would take 1 sec or 3 sec so during this time what should the browser render. It is like I have to render dashboard but the browser does not have the dashboard it is coming from the backend. So for cases like this react provides the suspense api which means if the component is suspended (component which is inside the suspense tag)/ if the data is not there yet then render the fallback
 
 Example: 
+```jsx
 import React, { Suspense, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 const Dashboard = React.lazy(() => import("./components/Dashboard"))
@@ -199,6 +200,8 @@ function AppBar() {
 }
 
 export default App;
+
+```
 
 ### Prop drilling
 
