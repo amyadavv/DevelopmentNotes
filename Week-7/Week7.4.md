@@ -145,6 +145,7 @@ export const totalNotificationSelector = selector({
 # Asynchronous Data Queries
 
 First how to do with the normal way: 
+``` jsx
 
 import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil"
 import { notification, totalNotificationSelector } from "./store/atoms/count"
@@ -192,6 +193,7 @@ function MainApp() {
 }
 
 export default App;
+```
 
 // This is not the right way to do async queries. The reason for that is, there is a slight delay when the new values are come from the backend because of the useEffect. Firstly the default value get rendered then the useEffect gets response and the actual data got rendered, thats why there is a flash when data is updated. 
 
