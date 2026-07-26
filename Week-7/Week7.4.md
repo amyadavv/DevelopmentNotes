@@ -231,7 +231,7 @@ Recoil provides a way to map state and derived state to React components via a d
 Selectors can be used as one way to incorporate asynchronous data into the recoil data-flow graph. 
 
 When we know that default value of an atom is come from an async function the following way to write an atom with async call: 
-
+```jsx
 export const notification = atom({
     key: "networkAtom",
     default: selector({
@@ -242,10 +242,13 @@ export const notification = atom({
         }
     })
 })
+```
 
 In atom the default value is an selector for a async call because we cannot have async default value
 
 Example: 
+
+```jsx
 
 import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil"
 import { notification, totalNotificationSelector } from "./store/atoms/count"
@@ -279,8 +282,11 @@ function MainApp() {
 }
 
 export default App;
+```
 
 Atom file 
+
+```jsx
 
 import axios from "axios";
 import { atom, selector } from "recoil";
@@ -306,6 +312,8 @@ export const totalNotificationSelector = selector({
         return allNotifications.network + allNotifications.jobs + allNotifications.messaging + allNotifications.notification
     }
 })
+
+```
 
 # Atom Family
 
