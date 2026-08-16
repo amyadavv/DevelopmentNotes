@@ -52,5 +52,24 @@ localStorage.removeItem("token")
 # Navigate to different pages
 
 - react router dom gives us hook which is useNavigate to navigate to different page
+
+Example: 
+
+```jsx
+const navigate = useNavigate();
+ return 
+ <div>
+    navigate("/send");
+ <div>
+ ```
+
 - we can also go to different page using Link tag, which is also given by react router dom
+
+# Get access to query params using react router dom 
+
+```jsx
+const [searchParams] = useSearchParams();
+const id = searchParams.get("id");
+const name = searchParams.get("name");
+```
 
