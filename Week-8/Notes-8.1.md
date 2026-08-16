@@ -49,6 +49,20 @@ and if you want to remove token from the localStorage then
 
 localStorage.removeItem("token")
 
+- get token
+
+```jsx
+
+axios.get("url", {
+    to: id,
+    amount
+}, {
+    headers: {
+        Authorization: "Bearer " + localStorage.getItem("token")
+    }
+})
+```
+
 # Navigate to different pages
 
 - react router dom gives us hook which is useNavigate to navigate to different page
