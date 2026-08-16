@@ -38,6 +38,19 @@ Use unprefixed utilities to target mobiles, and override them at larger breakpoi
 
 </div>
 
-# Notes for 8.2 lecture 
+# Store token in localStorage
 
- 
+onClick={async () => {
+    const response = await axios.post("{url}", { username, firstName, lastName, password });
+    localStorage.setItem("token", response.data.token);   // First is key and secound is value
+}}
+
+and if you want to remove token from the localStorage then
+
+localStorage.removeItem("token")
+
+# Navigate to different pages
+
+- react router dom gives us hook which is useNavigate to navigate to different page
+- we can also go to different page using Link tag, which is also given by react router dom
+
