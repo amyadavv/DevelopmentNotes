@@ -278,3 +278,33 @@ function Track ({todo}) {
 export default App;
 
 ```
+
+### SWR library - React Hooks for Data fetching
+
+But its better to use your own custom hook rather than using Data fetching library
+
+SWR is a popular React library that creates a lot of these hooks for you, and you can use it directly. 
+
+Example:
+
+``` jsx
+
+import useSWR from 'swr'
+
+// const fetcher = (url) => fetch(url). then((res)=> res.json());
+const fetcher = async function (url) {
+    const data = await fetch(url);
+    const json = await data.json();
+    return json();
+};
+
+function Profile () {
+    const { data, error, isLoading } = useSWR('url', fetcher)
+
+    if(error) return <div> failed to load </div>
+    if(isLoading) return <div> Loading ... </div>
+    return <div>hello, you have {data.todos.length} todos!</div>
+ }
+
+
+```
