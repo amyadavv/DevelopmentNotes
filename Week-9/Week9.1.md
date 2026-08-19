@@ -431,6 +431,22 @@ Solution:
 import { useEffect, useState } from 'react';
 import useDebounce from './useDebounce';
 
+
+function useDebounce (inputValue, delay) {
+
+    let timerId;
+    return function (...args) {
+        clearTimeout(timerId);
+        timerId = setTimeout(()=>{
+            inputValue
+        },delay)
+    }
+
+
+
+}
+
+
 const SearchBar = () => {
     const [inputValue, setInputValue] = useState('');
     const debounceValue = useDebounce(inputValue, 500);
@@ -449,3 +465,9 @@ export default SearchBar;
 
 
 ```
+
+Extra :
+
+memoization using useMemo vs useEffect IN DEPTH:-
+
+UseEffect runs after component get's rendered and it is asynchronous in nature, on the other hand useMemo runs before component get's rendered so we should use useMemo for memoization instead of useEffect. So if we use useEffect for memoization component will re render again after setting state inside useEffect, we should avoid that too.
