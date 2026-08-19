@@ -379,3 +379,39 @@ function App () {
 export default App
 
 ```
+
+### Performance/Timer based
+
+1. useInterval 
+
+Create a hook that runs a certain callback function every n seconds.
+
+Solution - 
+
+``` jsx
+
+import { useEffect, useState } from 'react';
+
+function useInterval (fn , timeout) {
+    useEffect(()=>{
+        setInterval(()=> {
+            fn();
+        },timeout);
+    },[])
+}
+
+function App () {
+    const [count, setCount] = useState(0);
+
+    useInterval(()=> {
+        setCount(c => c+1);
+    },1000)
+
+    return (
+        <div> Timer is at {count} </div>
+    )
+}
+
+export default App;
+
+```
