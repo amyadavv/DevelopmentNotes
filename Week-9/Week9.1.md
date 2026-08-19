@@ -324,4 +324,20 @@ You are given that -
 window.addEventListener('online', () => console.log('Became online'));
 window.addEventListener('offline', () => console.log('Became offline'));
 ``` 
-Solution :
+Solution : 
+```jsx
+function useIsOnline () {
+    const [isOnline, setIsOnline] = useState(window.navigator.onLine);
+
+        useEffect(()=> {
+            window.addEventListener("online", ()=> {
+                setIsOnline(true);
+            })
+            window.addEventListener("offline", ()=> {
+                setIsOnline(false);
+            })
+        },[])
+            return isOnline;
+}
+
+```
