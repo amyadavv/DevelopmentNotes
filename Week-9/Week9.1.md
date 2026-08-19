@@ -317,8 +317,8 @@ Create a hook that returns true or false based on weather the user is currently 
 
 You are given that - 
 
-1. window.navigator.onLine returns true or false based on weather the user is online 
-2. You can attach the following event listeners to listen to weather the user is online or not
+- window.navigator.onLine returns true or false based on weather the user is online 
+- You can attach the following event listeners to listen to weather the user is online or not
 
 ``` jsx
 window.addEventListener('online', () => console.log('Became online'));
@@ -339,5 +339,43 @@ function useIsOnline () {
         },[])
             return isOnline;
 }
+
+```
+
+2. useMousePointer hook
+
+Create a hook that returns you the current mouse pointer position.
+
+```jsx 
+
+import { useEffect, useState } from 'react'
+
+const useMousePointer = () => {
+    const [position, setPosition] = useState({x: 0, y: 0});
+
+    const handleMouseMove = (e) => {
+        setPosition({ x: e.clientX, y: e.clientY });
+    };
+
+    useEffect (()=> {
+        window.addEventListener('mousemove', handleMouseMove)
+        return () => {
+        window.removeEventListener('mousemove', handleMouseMove)
+        }
+    },[]);
+    return position;
+}
+
+function App () {
+    const mousePointer = useMousePointer();
+
+    return (
+        <>
+        Your mouse position is {mousePointer.x} {mousePointer.y}
+        </>
+    )
+}
+
+export default App
 
 ```
