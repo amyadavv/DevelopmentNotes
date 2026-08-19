@@ -428,6 +428,24 @@ Create a hook that debounce a value given
 Solution:
 
 ``` jsx 
+import { useEffect, useState } from 'react';
+import useDebounce from './useDebounce';
+
+const SearchBar = () => {
+    const [inputValue, setInputValue] = useState('');
+    const debounceValue = useDebounce(inputValue, 500);
+
+    return (
+        <input
+            type="text"
+            value = {inputValue}
+            onChange = {(e)=> setInputValue(e.target.value)}
+            placeholder = "Search ..."
+        >
+    )
+
+}
+export default SearchBar;
 
 
 ```
