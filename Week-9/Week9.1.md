@@ -394,9 +394,12 @@ import { useEffect, useState } from 'react';
 
 function useInterval (fn , timeout) {
     useEffect(()=>{
-        setInterval(()=> {
+        const int = setInterval(()=> {
             fn();
         },timeout);
+        return () => {
+            clearInterval(int);
+        }
     },[])
 }
 
