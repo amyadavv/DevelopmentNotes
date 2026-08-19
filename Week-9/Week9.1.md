@@ -308,3 +308,20 @@ function Profile () {
 
 
 ```
+
+### Browser Functionality related hooks
+
+1. useIsOnline hook 
+
+Create a hook that returns true or false based on weather the user is currently online
+
+You are given that - 
+
+1. window.navigator.onLine returns true or false based on weather the user is online 
+2. You can attach the following event listeners to listen to weather the user is online or not
+
+``` jsx
+window.addEventListener('online', () => console.log('Became online'));
+window.addEventListener('offline', () => console.log('Became offline'));
+``` 
+Solution :
