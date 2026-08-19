@@ -415,3 +415,16 @@ function App () {
 export default App;
 
 ```
+
+2. useDebounce
+
+Create a hook that debounce a value given 
+- The value that needs to be debounced
+- The interval at which the value should be debounced
+
+Solution:
+
+``` jsx 
+
+
+```
