@@ -225,12 +225,12 @@ What if you want to keep polling the backend every n seconds? n needs to be pass
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-function useTodos () {
+function useTodos (n) {
     const [todos, setTodos] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(()=> {
-        setInterval (()=> {
+        const value = setInterval (()=> {
             axios.get("url")
                 .then(res => {
                     setTodos(res.data.todos);
@@ -242,14 +242,19 @@ function useTodos () {
             setTodos(res.data.todos);
             setLoading(false);
         })
-    },[])
+
+    return () => {
+        clearInterval(value)
+    }
+
+    },[n])
 
     return {todos, loading};
 }
 
 function App () {
 
-    const {todos, loading} = useTodos();
+    const {todos, loading} = useTodos(5);
 
     if(loading) {
         return <div> Loading... </div>
