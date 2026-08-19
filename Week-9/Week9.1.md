@@ -111,3 +111,56 @@ A few good examples of this can be
 1. Data fetching hooks.
 2. Browser functionality related hooks - useOnlineStatus, useWindowSize, useMousePosition
 3. Performance/Timer based - useInterval, useDebounce
+
+
+### Data fetching hooks
+
+Data fetching hooks can be used to encapsulate all the logic to fetch the data from your backend.
+Example: 
+
+``` jsx 
+
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+
+function useTodos () {
+    const [todos, setTodos] = useState([]);
+
+    useEffect(()=> {
+        axios.get("url")
+        .then(res => {
+            setTodos(res.data.todos);
+        })
+    }, [])
+
+    return todos;
+}
+
+function App () {
+    // const [todos, setTodos] = useState([]);
+
+    // useEffect(()=> {
+    //     axios.get("url")
+    //     .then(res => {
+    //         setTodos(res.data.todos);
+    //     })
+    // }, [])
+
+    const todos = useTodos();
+
+    return (
+        <div>
+        {todos.map(todo => <Track todo={todo}/>)}
+        </div>
+    )
+}
+
+function Track ({todo}) {
+    return <div>
+    {todo.title}
+    <br/>
+    {todo.description}
+    </div>
+}
+
+export default App;
