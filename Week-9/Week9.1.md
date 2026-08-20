@@ -544,3 +544,21 @@ UI renders with 500
 There is no second render caused by setting state, because we're not calling a state setter.
 
 The calculation happens as part of rendering.
+
+## useDeferredValue
+
+There are two common optimization techniques you might have used before in this scenario:
+
+Debouncing means you'd wait for the user to stop typing (e.g. for a second) before updating the list.
+
+Throttling means you'd update the list every once in a while (e.g. at most once a second).
+
+While these techniques are helpful in some cases, useDeferredValue is better suited to optimizing rendering because it is deeply integrated with React itself and adapts to the user's device.
+
+Unlike debouncing or throttling, it doesn't require choosing any fixed delay. If the user's device is fast (e.g. powerful laptop), the deferred re-render would happen almost immediately and wouldn't be noticeable. If the user's device is slow, the list would "lag behind the input proportionally to how slow the device is.
+
+`useDeferredValue` is different from debouncing and throttling because its rendering is interruptible. This means if React is updating a large list and the user types something new, React can stop the current update, handle the user's typing first, and then continue updating the list in the background. Debouncing and throttling mainly delay the expensive work, but once that work starts, it can still block the UI and make it feel slow or janky. In simple words, **debouncing waits before doing the work, while `useDeferredValue` allows React to pause less important work when the user needs an immediate response.**
+
+
+If the work you're optimizing doesn't happen during rendering, debouncing and throttling are still useful. For example, they can let you fire fewer network requests. You can also use these techniques together.
+
