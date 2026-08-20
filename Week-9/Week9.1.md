@@ -488,7 +488,33 @@ Extra :
 
 memoization using useMemo vs useEffect IN DEPTH:-
 
-UseEffect runs after component get's rendered and it is asynchronous in nature, on the other hand useMemo runs before component get's rendered so we should use useMemo for memoization instead of useEffect. So if we use useEffect for memoization component will re render again after setting state inside useEffect, we should avoid that too.
+UseEffect runs after component get's rendered and it is asynchronous in nature, on the other hand useMemo runs during component get's rendered so we should use useMemo for memoization instead of useEffect. So if we use useEffect for memoization component will re render again after setting state inside useEffect, we should avoid that too. (useMemo calculates/memoizes a value during the component's render process. useEffect runs after the render has been committed.)
 
+Example: 
 
-useMemo calculates/memoizes a value during the component's render process. useEffect runs after the render has been committed.
+1. With useEffect 
+
+function App() {
+    const [count, setCount] = useState(10);
+    const [result, setResult] = useState(0);
+
+    useEffect(() => {
+        setResult(expensiveCalculation(count));
+    }, [count]);
+
+    return <div>{result}</div>;
+}
+
+so the flow is :
+
+RENDER #1
+   ↓
+useEffect runs
+   ↓
+setResult(500)  // That's the unnecessary extra render the statement is talking about.
+   ↓
+RENDER #2
+
+That's the unnecessary extra render the statement is talking about.
+
+2. 
