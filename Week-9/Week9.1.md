@@ -517,4 +517,30 @@ RENDER #2
 
 That's the unnecessary extra render the statement is talking about.
 
-2. 
+2. with useMemo
+
+function App() {
+    const [count, setCount] = useState(10);
+
+    const result = useMemo(() => {
+        return expensiveCalculation(count);
+    }, [count]);
+
+    return <div>{result}</div>;
+}
+
+the sequence is: 
+
+RENDER
+   ↓
+useMemo runs
+   ↓
+expensiveCalculation(10)
+   ↓
+result = 500
+   ↓
+UI renders with 500
+
+There is no second render caused by setting state, because we're not calling a state setter.
+
+The calculation happens as part of rendering.
