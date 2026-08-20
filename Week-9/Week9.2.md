@@ -26,5 +26,5 @@ Step 1 - Types of language
             return number;
         }
 
-    People realised that javascript is a very power language, but lacks types. Typescript was introduced as a new language to add types on top of javascript.
+    People realized that javascript is a very power language, but lacks types (types mean strongly typed). Typescript was introduced as a new language to add types (types mean strongly typed) on top of javascript.
 
