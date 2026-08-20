@@ -30,7 +30,8 @@ Step 1 - Types of language
 
 # What is typescript?
 
-TypeScript is a programming language developed and maintained by microsoft. It is a strict syntactical superset of Javascript and adds optional static typing to the language. 
+TypeScript is a programming language developed and maintained by microsoft. 
+It is a strict syntactical superset of Javascript and adds optional static typing to the language. 
 If you write some js code it will work in typescript and if you write some typescript code is will not work in js. 
 
 # Where/How does typescript code run? - Very Important
@@ -41,11 +42,11 @@ Typescript code never runs in your browser. Your browser can only understand jav
     3. When typescript is compiled down to javascript, you get type checking (similar to C++). If there is an error, the conversion to Javascript fails. 
 
 
-Flow - main.ts (typescript)------> main.js (javascript) --|-------Browser
+Flow -   main.ts (typescript)------> main.js (javascript) --|-------Browser
                                                           |-------Node.js
 
 # Typescript compiler
-tsc is the official typescript compiler that you can use to convert Typescript code into Javascript
+tsc is the official typescript compiler (transpiled) that you can use to convert Typescript code into Javascript
 There are many other famous compilers/transpilers for converting Typescript to Javascript. Some famous ones are - 
 1. esbuild
 2. swc
