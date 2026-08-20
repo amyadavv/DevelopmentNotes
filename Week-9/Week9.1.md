@@ -428,40 +428,48 @@ Create a hook that debounce a value given
 Solution:
 
 ``` jsx 
-import { useEffect, useState } from 'react';
-import useDebounce from './useDebounce';
 
+import { useEffect, useState } from "react";
 
-function useDebounce (inputValue, delay) {
+function useDebounce (value, timeout) {
+    const [debounceValue, setDebounceValue] = useState(value);
 
-    let timerId;
-    return function (...args) {
-        clearTimeout(timerId);
-        timerId = setTimeout(()=>{
-            inputValue
-        },delay)
-    }
+    useEffect(()=> {
 
+        let timeId = setTimeout(()=>{
+            setDebounceValue(value)
+        },timeout)
+        
+        return () => {
+            clearTimeout(timeId);
+        }
 
+    },[value])
 
+    return debounceValue;
 }
 
+function App() {
+    const [value, setValue] = useState("");
+    const debounceValue = useDebounce(value, 1000)
 
-const SearchBar = () => {
-    const [inputValue, setInputValue] = useState('');
-    const debounceValue = useDebounce(inputValue, 500);
+    useEffect(()=> {
+        axios.get("url")  // any time the debounceValue changed send the backend request
+    },[debounceValue])
 
     return (
-        <input
-            type="text"
-            value = {inputValue}
-            onChange = {(e)=> setInputValue(e.target.value)}
-            placeholder = "Search ..."
-        >
+        <div>
+            Debounce value is {debounceValue}
+            <input
+                type="text"
+                value={value}
+                onChange={e => setValue(e.target.value)}
+            />
+        </div>
     )
+} 
 
-}
-export default SearchBar;
+export default App;
 
 
 ```
