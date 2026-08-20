@@ -28,3 +28,14 @@ Step 1 - Types of language
 
     People realized that javascript is a very power language, but lacks types (types mean strongly typed). Typescript was introduced as a new language to add types (types mean strongly typed) on top of javascript.
 
+# What is typescript?
+
+TypeScript is a programming language developed and maintained by microsoft. It is a strict syntactical superset of Javascript and adds optional static typing to the language. 
+If you write some js code it will work in typescript and if you write some typescript code is will not work in js. 
+
+# Where/How does typescript code run? - Very Important
+
+
+
+
+
