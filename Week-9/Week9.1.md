@@ -433,6 +433,16 @@ import { useEffect, useState } from "react";
 
 function useDebounce (value, timeout) {
     const [debounceValue, setDebounceValue] = useState(value);
+    // why to use useState in this 
+    // Keep debounceValue synchronized with value after some delay. In fact, useState(value) only uses value during the initial render.
+
+        // value          = ""
+        // debounceValue  = ""
+
+        // setValue("A");
+
+        // value          = "A"
+        // debounceValue  = ""
 
     useEffect(()=> {
 
