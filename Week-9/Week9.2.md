@@ -1,4 +1,4 @@
-# Typescript
+# Typescript (Slides notes - https://projects.100xdevs.com/tracks/6SbPPXGkG8QKFOTW9BmL/ts-2)
 
 Step 1 - Types of language
 
@@ -35,7 +35,18 @@ If you write some js code it will work in typescript and if you write some types
 
 # Where/How does typescript code run? - Very Important
 
+Typescript code never runs in your browser. Your browser can only understand javascript. 
+    1. Javascript is the runtime language (the thing that actually runs in your browser/node.js runtime).
+    2. Typescript is something that compiles down to javascript
+    3. When typescript is compiled down to javascript, you get type checking (similar to C++). If there is an error, the conversion to Javascript fails. 
 
 
+Flow - main.ts (typescript)------> main.js (javascript) --|-------Browser
+                                                          |-------Node.js
 
+# Typescript compiler
+tsc is the official typescript compiler that you can use to convert Typescript code into Javascript
+There are many other famous compilers/transpilers for converting Typescript to Javascript. Some famous ones are - 
+1. esbuild
+2. swc
 
