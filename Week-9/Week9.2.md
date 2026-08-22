@@ -101,7 +101,7 @@ Problem 1 - Hello world. Thing to learn - How to give types to arguments of a fu
     Doesn’t return anything
 
     Solution: 
-    
+
     ```ts
     const hello : string = "Hello user";
 
@@ -113,3 +113,17 @@ Problem 1 - Hello world. Thing to learn - How to give types to arguments of a fu
     ```
     
 
+What is 'any'? 
+ Just like number is a type string is a type any is also a type. So we can do
+ const x : any = 2;
+
+ Now this code will show error because parameter hello implicitly has an 'any' type. So we have to explicitly tell to compiler that this is a string. So to avoid error we have to explicitly tell the compiler. 
+
+    ```ts
+    function greet (hello) {
+        console.log(hello)
+    }
+    greet("Hello Amit");
+
+    ```
+    This will throw error 
