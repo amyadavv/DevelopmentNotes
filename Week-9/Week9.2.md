@@ -292,6 +292,34 @@ function Todo({ todo }: TodoInput) {
 // or you can do same like the above interface example example
 ```
 
+2. Implementing interfaces
+
+Interfaces have another special property. You can implement interfaces as a class. Let’s say you have an person interface - 
+
+interface Person {
+    name: string;
+    age: number;
+    greet(phrase: string): void;
+}
+
+You can create a class which implements this interface.
+
+class Employee implements Person {
+    name: string;
+    age: number;
+
+    constructor(n: string, a: number) {
+        this.name = n;
+        this.age = a;
+    }
+
+    greet(phrase: string) {
+        console.log(`${phrase} ${this.name}`);
+    }
+}
+
+This is useful since now you can create multiple variants of a person (Manager, CEO …)
+
 # Extra:
 
 - Difference between zod and typeScript
