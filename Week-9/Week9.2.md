@@ -211,6 +211,8 @@ Try enabling it and see the compilation errors on the following code -
 const greet = (name) => `Hello, ${name}!`;
 Then try disabling it
 
+In the code base there shouldn't be any implicit any. So if you want you code base slightly strict ( we don't give arguments explicitly give to all function ) so set this to false - "noImplicitReturns": false, so above code will not give any error. So the typeScript assume implicitly type any to all function I will not complain.
+
 
 5. removeComments
 Weather or not to include comments in the final js file 
