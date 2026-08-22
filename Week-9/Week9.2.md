@@ -265,7 +265,31 @@ isLegal({
     lastName: "Yadav",
     age: 25
 })
+```
 
+Assignment #2 - Create a React component that takes todos as an input and renders them. Select typescript when initializing the react project using npm create vite@latest.
+
+```tsx
+// Todo.tsx
+interface TodoType {
+  title: string;
+  description: string;
+  done: boolean;
+}
+
+interface TodoInput {
+  todo: TodoType;
+}
+
+function Todo({ todo }: TodoInput) {
+  return <div>
+    <h1>{todo.title}</h1>
+    <h2>{todo.description}</h2>
+    
+  </div>
+}
+
+// or you can do same like the above interface example example
 ```
 
 # Extra:
