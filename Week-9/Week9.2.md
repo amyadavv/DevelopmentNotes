@@ -164,3 +164,18 @@ let y : boolean = isLegal(19)
 ```
 
 Problem 4 - Create a function that takes another function as input, and runs it after 1 second.
+
+```tsx 
+// This is the function which expects no arguments and it returns nothing it returns void. As we know the callback function is not returning not returning anything that's why we return void.
+
+function runAfter1(fn: () => void) {
+    setTimeout(() => {
+        fn()
+    }, 1000)
+}
+
+runAfter1(function () {
+    console.log("Run after 1 sec")
+})
+
+```
