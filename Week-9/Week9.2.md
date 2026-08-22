@@ -215,4 +215,63 @@ In the code base there shouldn't be any implicit any. So if you want you code ba
 
 
 5. removeComments
-Weather or not to include comments in the final js file 
+Weather or not to include comments in the final js file.
+
+# Interfaces
+
+1. What are interfaces
+How can you assign types to objects? For example, a user object that looks like this - 
+
+const user = {
+	firstName: "harkirat",
+	lastName: "singh",
+	email: "email@gmail.com".
+	age: 21,
+}
+
+To assign a type to the user object, you can use interfaces
+interface User {
+	firstName: string;
+	lastName: string;
+	email: string;
+	age: number;
+}
+
+Assignment #1 - Create a function isLegal that returns true or false if a user is above 18. It takes a user as an input.
+
+
+```tsx
+interface User {
+    firstName: string,
+    lastName: string,
+    age: number
+}
+
+function isLegal(User: User) {
+    if (User.age > 18) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function greet(user: User) {
+    console.log("Hello " + user.firstName);
+}
+
+isLegal({
+    firstName: "AMit",
+    lastName: "Yadav",
+    age: 25
+})
+```
+
+
+
+
+
+# Extra:
+
+- Difference between zod and typeScript
+
+Zod is for runtime type checks. Zod runs when your code is actually executing on a browser on a nodejs. TypeScript compilation type checks happens during compile time when your typeScript code converted into javascript 
