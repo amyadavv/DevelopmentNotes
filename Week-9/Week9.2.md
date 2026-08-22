@@ -213,4 +213,4 @@ Then try disabling it
 
 
 5. removeComments
-Weather or not to include comments in the final js file
+Weather or not to include comments in the final js file 
