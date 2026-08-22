@@ -127,3 +127,19 @@ What is 'any'?
 
     ```
     This will throw error 
+
+
+Problem 2 - Sum function
+
+// So we are explicitly saying that this function will return a number. 
+
+function sum (a: number, b:number): number {
+    return a + b;
+}
+const value = sum(4,6);
+console.log(value);
+
+// one thing is even if we didn't give the function return type. Function will still give me the same signature because typescript was able to infer the type. This is what's called 'type inference'. How typescript is able to do this as it can see in the function a is a number b is a number if we do sum then it will return the number so don't have to explicitly gave the number. Usually its good practice to gave it a number or return type
+
+
+Problem 3 - Return true or false based on if a user is 18+
