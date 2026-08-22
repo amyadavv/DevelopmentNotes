@@ -198,11 +198,11 @@ Output for ES2020
 const greet = (name) => `Hello, ${name}!`;
 
 2. rootDir
-Where should the compiler look for .ts files. Good practise is for this to be the src folder
+Where should the compiler look for .ts files. Good practice is for this to be the src folder. So all the typeScript code should be in the 'src' folder and all the convert typeScript code into js code (final output) should be in the 'dist' folder. To use it search it in the tsconfig file and uncomment it with the source. Like this - "rootDir" : "./scr",
 
 
 3. outDir
-Where should the compiler look for spit out the .js files.
+Where should the compiler look for spit out the .js files. To use it search it in the tsconfig file and uncomment it with the source. Like this - "outDir" : "./dist",
 
 
 4. noImplicitAny
