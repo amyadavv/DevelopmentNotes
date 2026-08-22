@@ -1,6 +1,6 @@
 # Typescript (Slides notes - https://projects.100xdevs.com/tracks/6SbPPXGkG8QKFOTW9BmL/ts-2)
 
-Step 1 - Types of language
+Types of language
 
 1. Strongly typed vs loosely typed
     The terms strongly typed and loosely typed refer to how programming languages handle types, particularly how strict they are about type conversions and type safety. 
@@ -50,4 +50,43 @@ tsc is the official typescript compiler (transpiled) that you can use to convert
 There are many other famous compilers/transpilers for converting Typescript to Javascript. Some famous ones are - 
 1. esbuild
 2. swc
+
+
+# The tsc compiler
+
+ 
+- Step 1 - Install tsc/typescript globally: 
+    npm install -g typescript
+
+- Step 2 - Initialize an empty Node.js project with typescript:
+    mkdir node-app
+    cd node-app
+    npm init -y
+    npx tsc --init
+
+    These commands should initialize two files in your project - package.json and tsconfig.json
+
+- Step 3 - Create a a.ts file
+    const x: number = 1;
+    console.log(x);
+
+- Step 4 - Compile the ts file to js file
+    tsc -b
+
+- Step 5 - Explore the newly generated index.js file. Notice how there is no typescript code in the javascript file. It’s a plain old js file with no types.
+
+- Step 7 - Delete a.js
+
+- Step 6 - Try assigning x to a string
+    Make sure you convert the const to let
+    let x: number = 1;
+    x = "harkirat"
+    console.log(x);
+
+Step 7 - Try compiling the code again
+    tsc -b
+
+Notice all the errors you see in the console. This tells you there are type errors in your codebase.
+Also notice that no index.js is created anymore. This is the high level benefit of typescript. It lets you catch type errors at compile time
+ 
 
