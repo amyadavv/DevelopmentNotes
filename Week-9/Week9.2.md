@@ -244,7 +244,8 @@ Assignment #1 - Create a function isLegal that returns true or false if a user i
 interface User {
     firstName: string,
     lastName: string,
-    age: number
+    age: number,
+    email?: string,  // this make optional to pass email
 }
 
 function isLegal(User: User) {
@@ -264,11 +265,8 @@ isLegal({
     lastName: "Yadav",
     age: 25
 })
+
 ```
-
-
-
-
 
 # Extra:
 
