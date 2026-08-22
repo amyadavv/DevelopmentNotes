@@ -46,6 +46,7 @@ Flow -   main.ts (typescript)------> main.js (javascript) --|-------Browser
                                                           |-------Node.js
 
 # Typescript compiler
+
 tsc is the official typescript compiler (transpiled) that you can use to convert Typescript code into Javascript
 There are many other famous compilers/transpilers for converting Typescript to Javascript. Some famous ones are - 
 1. esbuild
@@ -54,7 +55,6 @@ There are many other famous compilers/transpilers for converting Typescript to J
 
 # The tsc compiler
 
- 
 - Step 1 - Install tsc/typescript globally: 
     npm install -g typescript
 
@@ -88,5 +88,28 @@ Step 7 - Try compiling the code again
 
 Notice all the errors you see in the console. This tells you there are type errors in your codebase.
 Also notice that no index.js is created anymore. This is the high level benefit of typescript. It lets you catch type errors at compile time
- 
+
+# Basic Types in TypeScript
+
+Typescript provides you some basic types - number, string, boolean, null, undefined.
+
+Problem 1 - Hello world. Thing to learn - How to give types to arguments of a function
+
+    Write a function that greets a user given their first name. 
+    Argument - firstName
+    Logs - Hello {firstName}
+    Doesn’t return anything
+
+    Solution: 
+    
+    ```ts
+    const hello : string = "Hello user";
+
+    function greet (hello: string) {
+        console.log(hello)
+    }
+
+    greet(hello);
+    ```
+    
 
