@@ -296,6 +296,8 @@ function Todo({ todo }: TodoInput) {
 
 Interfaces have another special property. You can implement interfaces as a class. Let’s say you have an person interface - 
 
+```tsx
+
 interface Person {
     name: string;
     age: number;
@@ -317,6 +319,10 @@ class Employee implements Person {
         console.log(`${phrase} ${this.name}`);
     }
 }
+
+const e = new Employee("Amit", 22); // This e objects need to have a name property and an age property associate. You have to define these property above the constructor like above example. Other wise it will throw error.
+
+```
 
 This is useful since now you can create multiple variants of a person (Manager, CEO …)
 
