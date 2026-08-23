@@ -322,12 +322,17 @@ class Employee implements Person {
 
 const e = new Employee("Amit", 22); // This e objects need to have a name property and an age property associate. You have to define these property above the constructor like above example. Other wise it will throw error.
 
+console.log(e.greet("Hello"))
+
 ```
 
 This is useful since now you can create multiple variants of a person (Manager, CEO …)
 
 Ques: Difference between interface and types
 The difference between interface and types is if you define a interface you can actually implement a class from it, we can create a class that follows all properties of interface but types don't let you do it. 
+
+Ques: I can write the Employee class standalone itself. What is the purpose of an interface here? 
+Who ever creating a class if they implement Person they will have a greet function. If they implement Person and don't have a greet function it will give you an error. The benefit of having interface is who ever is implementing Person so on that e object (console.log(e.greet("Hello"))) we can call greet. greet will exists as a function because you know class implements Person.
 
 # Extra:
 
