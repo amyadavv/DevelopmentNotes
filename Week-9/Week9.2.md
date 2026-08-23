@@ -328,11 +328,99 @@ console.log(e.greet("Hello"))
 
 This is useful since now you can create multiple variants of a person (Manager, CEO …)
 
+Ques: I can write the Employee class standalone itself. What is the purpose of an interface here? 
+Who ever creating a class if they implement Person they will have a greet function. If they implement Person and don't have a greet function it will give you an error. The benefit of having interface is who ever is implementing Person so on that e object (console.log(e.greet("Hello"))) we can call greet. greet will exists as a function because you know class implements Person.
+
 Ques: Difference between interface and types
 The difference between interface and types is if you define a interface you can actually implement a class from it, we can create a class that follows all properties of interface but types don't let you do it. 
 
-Ques: I can write the Employee class standalone itself. What is the purpose of an interface here? 
-Who ever creating a class if they implement Person they will have a greet function. If they implement Person and don't have a greet function it will give you an error. The benefit of having interface is who ever is implementing Person so on that e object (console.log(e.greet("Hello"))) we can call greet. greet will exists as a function because you know class implements Person.
+# Types
+
+What are types?
+- Very similar to interfaces, types let you aggregate data together.
+- In types we have to put '=' but in interface we don't have to put '='.
+- In types we cannot use to implement classes only interface is used to implement classes
+- But they let you do a few other things.
+
+```tsx
+type User = {
+	firstName: string;
+	lastName: string;
+	age: number
+}
+```
+ 
+1. Unions
+Let’s say you want to print the id of a user, which can be a number or a string.You can not do this using interfaces.
+
+```tsx
+type StringOrNumber = string | number;
+
+function printId(id: StringOrNumber) {
+  console.log(`ID: ${id}`);
+}
+
+printId(101); // ID: 101
+printId("202"); // ID: 202
+```
+
+2. Intersection
+What if you want to create a type that has every property of multiple types/ interfaces. You can not do this using interfaces. 
+
+```tsx
+type Employee = {
+  name: string;
+  startDate: Date;
+};
+
+type Manager = {
+  name: string;
+  department: string;
+};
+
+type TeamLead = Employee & Manager;
+
+const teamLead: TeamLead = {
+  name: "harkirat",
+  startDate: new Date(),
+  department: "Software developer"
+};
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Extra:
 
