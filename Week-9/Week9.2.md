@@ -326,6 +326,9 @@ const e = new Employee("Amit", 22); // This e objects need to have a name proper
 
 This is useful since now you can create multiple variants of a person (Manager, CEO …)
 
+Ques: Difference between interface and types
+The difference between interface and types is if you define a interface you can actually implement a class from it, we can create a class that follows all properties of interface but types don't let you do it. 
+
 # Extra:
 
 - Difference between zod and typeScript
