@@ -219,7 +219,10 @@ Weather or not to include comments in the final js file.
 
 # Interfaces
 
-1. What are interfaces
+1. What are interfaces 
+An interface in TypeScript is a way to define the structure/shape of an object. Think of it as a rule or blueprint that tells you what properties an object should have and what types they should be.
+
+Let you aggregate data together. Aggregate data means combining multiple individual pieces of data to get a summarized result.
 How can you assign types to objects? For example, a user object that looks like this - 
 
 const user = {
