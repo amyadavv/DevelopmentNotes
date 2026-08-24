@@ -555,3 +555,5 @@ console.log(isLegal([{
 - Difference between zod and typeScript
 
 Zod is for runtime type checks. Zod runs when your code is actually executing on a browser on a nodejs. TypeScript compilation type checks happens during compile time when your typeScript code converted into javascript 
+
+- TypeScript never goes into production ideally typescript should be only the part of build pipeline. The typeScript code is gets converted to javascript code then this javascript bundle will run on the server where the project deployed, so it should never reaches where your project is deployed. Typescript never runs only js runs, runs on the node js server.
