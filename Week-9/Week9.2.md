@@ -518,39 +518,6 @@ console.log(isLegal([{
 
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Extra:
 
 - Difference between zod and typeScript
