@@ -424,6 +424,29 @@ Example - Given an array of positive integers as input, return the maximum value
 
 Solution:
 
+```tsx 
+
+type numberArr = number [];
+
+function maxValue(arr: number[]): number {
+    if (arr.length === 0) {
+        throw new Error("Array cannot be empty");
+    }
+
+    let max = arr[0]!;
+
+    for (const num of arr) {
+        if (num > max) {
+            max = num;
+        }
+    }
+
+    return max;
+}
+
+console.log(maxValue([1, 2, 3]));
+```
+
 Example - Given a list of users, filter out the users that are legal (greater than 18 years of age)
 
 interface User {
