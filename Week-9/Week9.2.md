@@ -365,7 +365,7 @@ function doSomething(cb2: (str: string, num: number) => string) : string {
 # Types
 
 What are types?
-- Very similar to interfaces, types let you aggregate data together.
+- Very similar to interfaces, types let you aggregate data together. Aggregate data means combining multiple individual pieces of data to get a summarized result.
 - In types we have to put '=' but in interface we don't have to put '='.
 - In types we cannot use to implement classes only interface is used to implement classes
 - we cannot create array in interface
