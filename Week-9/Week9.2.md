@@ -340,6 +340,7 @@ What are types?
 - Very similar to interfaces, types let you aggregate data together.
 - In types we have to put '=' but in interface we don't have to put '='.
 - In types we cannot use to implement classes only interface is used to implement classes
+- we cannot create array in interface
 - But they let you do a few other things.
 
 ```tsx
@@ -426,7 +427,7 @@ Solution:
 
 ```tsx 
 
-type numberArr = number [];
+type numberArr = number []; // we cannot create array in interface
 
 function maxValue(arr: number[]): number {
     if (arr.length === 0) {
