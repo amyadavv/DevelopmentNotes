@@ -388,6 +388,34 @@ const teamLead: TeamLead = {
 
 ```
 
+``` tsx
+type Employee = {
+    name: string;
+    startDate: Date;
+}
+
+interface Manager {
+    name: string;
+    department: string;
+}
+
+type teamLead = Employee & Manager; // If we either do a OR or do an AND then we need to use a type we cannot use interfaces. If you ever want to create a class which implements a type then use a interface we cannot use a type. 
+
+type teamLead2 = {
+    name: string;
+    department: string;
+    startDate: Date;
+}
+// Both teamLead is the same thing
+
+const TeamLead: teamLead = {
+    name: "sff",
+    startDate: new Date(),
+    department: "sddfer"
+
+}
+```
+
 
 
 
