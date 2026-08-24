@@ -458,6 +458,33 @@ interface User {
 
 Solution: 
 
+``` tsx 
+
+interface User {
+    firstName: string,
+    lastName: string,
+    age: number
+}
+
+function isLegal(user: User[]) {
+    return user.filter(x => x.age >= 18);
+}
+
+console.log(isLegal([{
+    firstName: "Amit",
+    lastName: "ydv",
+    age: 19
+}, {
+    firstName: "Amit",
+    lastName: "y",
+    age: 19
+}, {
+    firstName: "Am",
+    lastName: "ydv",
+    age: 0
+}]))
+
+```
 
 
 
