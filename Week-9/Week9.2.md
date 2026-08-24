@@ -334,6 +334,24 @@ Who ever creating a class if they implement Person they will have a greet functi
 Ques: Difference between interface and types
 The difference between interface and types is if you define a interface you can actually implement a class from it, we can create a class that follows all properties of interface but types don't let you do it. 
 
+Interface can also extends interface:
+
+``` tsx
+
+interface User {
+    age: number;
+}
+
+interface Manager extends User { // manager will have both age and name number
+    name: number;
+}
+
+interface Employee extends User { // Employee will also have age and name string 
+    name : string;
+}
+ 
+```
+
 # Types
 
 What are types?
