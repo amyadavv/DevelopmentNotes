@@ -352,6 +352,7 @@ interface Manager extends User { // manager will have both age and name number
 interface Employee extends User { // Employee will also have age and name string 
     name : string;
 }
+// interface Employee extends User, Manager {} // can also extends more than one
  
 ```
 
