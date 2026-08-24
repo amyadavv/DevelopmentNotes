@@ -416,6 +416,24 @@ const TeamLead: teamLead = {
 }
 ```
 
+# Arrays in TS
+
+If you want to access arrays in typescript, it’s as simple as adding a [] annotation next to the type
+
+Example - Given an array of positive integers as input, return the maximum value in the array
+
+Solution:
+
+Example - Given a list of users, filter out the users that are legal (greater than 18 years of age)
+
+interface User {
+	firstName: string;
+	lastName: string;
+	age: number;
+}
+
+Solution: 
+
 
 
 
