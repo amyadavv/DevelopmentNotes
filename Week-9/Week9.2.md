@@ -524,7 +524,7 @@ console.log(isLegal([{
 
 Zod is for runtime type checks. Zod runs when your code is actually executing on a browser on a nodejs. TypeScript compilation type checks happens during compile time when your typeScript code converted into javascript 
 
-- TypeScript never goes into production ideally typescript should be only the part of build pipeline. The typeScript code is gets converted to javascript code then this javascript bundle will run on the server where the project deployed, so it should never reaches where your project is deployed. Typescript never runs only js runs, runs on the node js server.
+- TypeScript never goes into production ideally typescript should be only the part of build pipeline (CI/CD pipelines). The typeScript code is gets converted to javascript code then this javascript bundle will run on the server where the project deployed, so it should never reaches where your project is deployed. Typescript never runs only js runs, runs on the node js server.
 
 - What is a Monorepo?
 A Monorepo (Monolithic Repository) is a strategy where code for multiple projects, libraries, or services lives inside a single Git repository, instead of being split across multiple repositories (Polyrepo).
