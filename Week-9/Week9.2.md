@@ -575,4 +575,9 @@ All their contents, including functions, are treated as part of a single global 
 
 If you don't exports specific function, if you define a function in two files neither one of these are exported then they both reach the same place eventually which are called ambient modules in typescript and then there will be a conflict they cannot have the same name.
 
+8. interface User {
+    id: number | string,
+    name: string
+}
+
 
