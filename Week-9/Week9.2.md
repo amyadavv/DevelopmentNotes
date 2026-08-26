@@ -552,3 +552,7 @@ A Microservice Architecture is a design pattern where an application is broken d
     2. Operational Overhead: Requires robust DevOps infrastructure (Docker, Kubernetes, CI/CD pipelines, API gateways).
 
 - You cannot define same function in multiple files in the same directory in typeScript. Ts compiler looks at multiple file. Duplicates in any file inside the folder containing tsconfig shouldn't have same name. 
+
+- Difference between abstract class and interface. 
+
+When we define the abstract class we can have a base constructor that whosoever is extending will able to use. We can have functions in the abstract class. Some methods are abstract and some methods are already implemented. We cannot do it on interface. In interface we cannot have any run time code any function implementation vs in the abstract class we can do it. 
