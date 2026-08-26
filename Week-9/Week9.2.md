@@ -520,13 +520,14 @@ console.log(isLegal([{
 
 # Extra:
 
-- Difference between zod and typeScript
-
+1.  Difference between zod and typeScript
 Zod is for runtime type checks. Zod runs when your code is actually executing on a browser on a nodejs. TypeScript compilation type checks happens during compile time when your typeScript code converted into javascript 
 
-- TypeScript never goes into production ideally typescript should be only the part of build pipeline (CI/CD pipelines). The typeScript code is gets converted to javascript code then this javascript bundle will run on the server where the project deployed, so it should never reaches where your project is deployed. Typescript never runs only js runs, runs on the node js server.
 
-- What is a Monorepo?
+2.  TypeScript never goes into production ideally typescript should be only the part of build pipeline (CI/CD pipelines). The typeScript code is gets converted to javascript code then this javascript bundle will run on the server where the project deployed, so it should never reaches where your project is deployed. Typescript never runs only js runs, runs on the node js server.
+
+
+3. What is a Monorepo?
 A Monorepo (Monolithic Repository) is a strategy where code for multiple projects, libraries, or services lives inside a single Git repository, instead of being split across multiple repositories (Polyrepo).
 
     Key Advantages:
@@ -538,7 +539,8 @@ A Monorepo (Monolithic Repository) is a strategy where code for multiple project
     1. Tooling Complexity: Requires build tools that support caching and dependency graphs (e.g., Turborepo, Nx, Bazel, Lerna) to avoid rebuilding everything on every commit.
     2. Access Control: Harder to restrict developer access to only specific parts of the codebase.
 
-- 2. What is a Microservice Architecture?
+
+4. What is a Microservice Architecture?
 A Microservice Architecture is a design pattern where an application is broken down into small, independently deployable services. Each service handles a specific business domain (e.g., Auth, Payments, Orders) and communicates with others over a network (via REST APIs, gRPC, or Message Queues like Kafka/RabbitMQ).    
 
 
@@ -551,14 +553,26 @@ A Microservice Architecture is a design pattern where an application is broken d
     1. Distributed System Complexity: Requires handling network latency, distributed transactions, tracing, and data consistency.
     2. Operational Overhead: Requires robust DevOps infrastructure (Docker, Kubernetes, CI/CD pipelines, API gateways).
 
-- You cannot define same function in multiple files in the same directory in typeScript. Ts compiler looks at multiple file. Duplicates in any file inside the folder containing tsconfig shouldn't have same name. 
 
-- Difference between abstract class and interface. 
-
+5. Difference between abstract class and interface. 
 When we define the abstract class we can have a base constructor that whosoever is extending will able to use. We can have functions in the abstract class. Some methods are abstract and some methods are already implemented. We cannot do it on interface. In interface we cannot have any run time code any function implementation vs in the abstract class we can do it. 
 
-- Tuple type variable : 
+
+6. Tuple type variable : 
     Eg 1: var employee : [number, string] = [1, "Amy"]; 
     Eg 2: function x () : [number, number] { return [2,3] }
+
+
+7. Duplicate function implementation
+You cannot define same function in multiple files in the same directory in typeScript. Ts compiler looks at multiple file. Duplicates in any file inside the folder containing tsconfig shouldn't have same name. 
+
+When you write a function with the same name and code structure as a function already defined in another TypeScript file within your project, even if they're in separate files, TypeScript will raise a red flag saying, "Duplicate function Implementation."
+
+why does it happen?
+Ambient Modules: When you don't use explicit Imports and exports in its files, they become ambient modules.
+
+All their contents, including functions, are treated as part of a single global namespace. Defining functions with Identical names and signatures in different ambient modules leads to this error. 
+
+If you don't exports specific function, if you define a function in two files neither one of these are exported then they both reach the same place eventually which are called ambient modules in typescript and then there will be a conflict they cannot have the same name.
 
 
