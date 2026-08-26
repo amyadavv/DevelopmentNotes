@@ -525,3 +525,30 @@ console.log(isLegal([{
 Zod is for runtime type checks. Zod runs when your code is actually executing on a browser on a nodejs. TypeScript compilation type checks happens during compile time when your typeScript code converted into javascript 
 
 - TypeScript never goes into production ideally typescript should be only the part of build pipeline. The typeScript code is gets converted to javascript code then this javascript bundle will run on the server where the project deployed, so it should never reaches where your project is deployed. Typescript never runs only js runs, runs on the node js server.
+
+- What is a Monorepo?
+A Monorepo (Monolithic Repository) is a strategy where code for multiple projects, libraries, or services lives inside a single Git repository, instead of being split across multiple repositories (Polyrepo).
+
+    Key Advantages:
+    1. Code Sharing & Reusability: Easily share types, helper functions, and UI component libraries across different apps without publishing private npm packages.
+    2. Atomic Changes: Update a backend API contract and frontend client consuming it in a single Git commit and Pull Request.
+    3. Unified Tooling & Dependencies: Single setup for ESLint, Prettier, TypeScript configs, and automated tests.
+
+    Challenges:
+    1. Tooling Complexity: Requires build tools that support caching and dependency graphs (e.g., Turborepo, Nx, Bazel, Lerna) to avoid rebuilding everything on every commit.
+    2. Access Control: Harder to restrict developer access to only specific parts of the codebase.
+
+- 2. What is a Microservice Architecture?
+A Microservice Architecture is a design pattern where an application is broken down into small, independently deployable services. Each service handles a specific business domain (e.g., Auth, Payments, Orders) and communicates with others over a network (via REST APIs, gRPC, or Message Queues like Kafka/RabbitMQ).    
+
+
+    Key Advantages:
+    1. Independent Scalability: Scale only the high-traffic services (e.g., Payments during sale events) without scaling the whole application.
+    2. Fault Isolation: If the recommendation service crashes, user authentication and order placement continue working.
+    3. Tech Stack Freedom: Different teams can choose the best programming language/database for their specific service.
+
+    Challenges:
+    1. Distributed System Complexity: Requires handling network latency, distributed transactions, tracing, and data consistency.
+    2. Operational Overhead: Requires robust DevOps infrastructure (Docker, Kubernetes, CI/CD pipelines, API gateways).
+
+- You cannot define same function in multiple files in the same directory in typeScript. Ts compiler looks at multiple file. Duplicates in any file inside the folder containing tsconfig shouldn't have same name. 
