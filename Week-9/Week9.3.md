@@ -5,17 +5,19 @@ The concept behind an enumeration is to create a human-readable way to represent
 Example 1 - Game 
 Let’s say you have a game where you have to perform an action based on weather the user has pressed the up arrow key, down arrow key, left arrow key or right arrow key.
 
+```tsx
 function doSomething(keyPressed) {
 	// do something.
 }
+```
 
 What should the type of keyPressed be?
 Should it be a string? (UP , DOWN , LEFT, RIGHT) ?
 Should it be numbers? (1, 2, 3, 4) ?
 
 Approach 1: 
-```tsx
 
+```tsx
 function doSomething(keyPressed: string) {
 	// do something.
 }
@@ -29,17 +31,22 @@ keyPressed("UpRandomg");  // random value
 ```
 
 Approach 2:
-```tsx
 
-function doSomething(keyPressed: string) {
+```tsx
+type keyInput = "Up" | "Down" | "Left" | "Right";
+
+function doSomething(keyPressed: keyInput) {
 	// do something.
+    if (keyPressed == "up")
+    {
+
+    }
 }
 
 keyPressed("Up");
 keyPressed("Down");
-keyPressed("UpRandomg");  // random value
+keyPressed("UpRandomg");  // now this will throw error
 
-// Problem with this approach is I can give any random value and it does not throw error because the random value is also a string then in the doSomething function logic will fail.
 
 ```
 
