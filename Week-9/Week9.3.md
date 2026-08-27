@@ -47,13 +47,37 @@ keyPressed("Up");
 keyPressed("Down");
 keyPressed("UpRandomg");  // now this will throw error
 
-
 ```
 
-
-
-
 The best thing to use in such a case is an enum.
+
+```tsx
+enum Direction {
+    Up,
+    Down,
+    Left,
+    Right
+}
+
+function doSomething(keyPressed: Direction) {
+	if(keyPressed == Direction.Up) {
+
+    }
+}
+
+doSomething(Direction.Up)
+doSomething(Direction.Down)
+
+``` 
+
+This makes code slightly cleaner to read out. 
+The final value stored at runtime is still a number (0, 1, 2, 3). 
+The enum is a virtual concepts in typescript. There is no concept of enums in javascript. 
+ 
+2. What values do you see at runtime for Direction.UP ? Try logging Direction.Up on screen
+
+```tsx 
+
 enum Direction {
     Up,
     Down,
@@ -66,16 +90,13 @@ function doSomething(keyPressed: Direction) {
 }
 
 doSomething(Direction.Up)
+console.log(Direction.Up)
 
-This makes code slightly cleaner to read out. 
-💡
-The final value stored at runtime is still a number (0, 1, 2, 3). 
- 
-2. What values do you see at runtime for Direction.UP ?
-Try logging Direction.Up on screen
-Code
-notion image
+```
+Output: 0
+
 This tells you that by default, enums get values as 0 , 1, 2...
+
 3. How to change values?
 enum Direction {
     Up = 1,
