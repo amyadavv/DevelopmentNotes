@@ -98,6 +98,8 @@ Output: 0
 This tells you that by default, enums get values as 0 , 1, 2...
 
 3. How to change values?
+
+```tsx
 enum Direction {
     Up = 1,
     Down, // becomes 2 by default
@@ -110,3 +112,43 @@ function doSomething(keyPressed: Direction) {
 }
 
 doSomething(Direction.Down)
+console.log(Direction.Down)
+```
+Output: 2
+
+4. Can also be strings
+
+```tsx
+enum Direction {
+    Up = "UP",
+    Down = "Down",
+    Left = "Left",
+    Right = 'Right'   // In enums if you added one string value to the constant then you need to add string values to all the constants otherwise it will give error. 
+}
+
+function doSomething(keyPressed: Direction) {
+	// do something.
+}
+
+doSomething(Direction.Down)
+console.log(Direction.Down)
+```
+Output: Down
+
+5. Common usecase in express
+
+```tsx
+enum ResponseStatus {
+    Success = 200,
+    NotFound = 404,
+    Error = 500
+}
+
+app.get("/', (req, res) => {
+    if (!req.query.userId) {
+			res.status(ResponseStatus.Error).json({})
+    }
+    // and so on...
+		res.status(ResponseStatus.Success).json({});
+})
+```
