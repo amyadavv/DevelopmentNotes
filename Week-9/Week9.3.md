@@ -165,11 +165,39 @@ function getFirstElement(arr: (string | number)[]) {
     return arr[0];
 }
 
-const el = getFirstElement([1, 2, 3]);
+const el = getFirstElement([1, 2, 3, "Amit"]);
 ```
 
 What is the problem in this approach?
-User can send different types of values in inputs, without any type errors. Typescript isn’t able to infer the right type of the return type
+
+- Problem 1: 
+
+```tsx
+type Input = number | string;
+
+function getFirstElement(arr: Input[]) {
+    return arr[0];
+}
+
+const el = getFirstElement(["Amit", "Yadav"]);
+console.log(el.toUpperCase());
+
+// Let say I want to print Amit in upper case. We cannot do that because this error is coming "Property 'toUpperCase' does not exist on type Input ('string | number')." 
+// Given an Input array output is going to be Input and since Input can either be a number or a string typescript prevent calling toUpperCase(). Number pe we cannot call uppercase. 
+```
+
+- Problem 2: User can send different types of values in inputs, without any type errors. Typescript isn’t able to infer the right type of the return type
+
+Solution :
+
+```tsx
+function getFirstElement(arr: string[] | number[]) {
+    return arr[0];
+}
+
+const el = getFirstElement(["Amit", "Yadav"]);
+ 
+```
 
 2. Solution - Generics
 Generics enable you to create components that work with any data type while still providing compile-time type safety.
