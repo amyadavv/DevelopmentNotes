@@ -267,4 +267,51 @@ function getFirstElement<T>(arr: T[]) {
 
 const el = getFirstElement(["harkiratSingh", "ramanSingh"]);
 console.log(el.toLowerCase())
+
+```
+
+# Exporting and importing modules
+
+TypeScript follows the ES6 module system, using import and export statements to share code between different files. Here's a brief overview of how this works:
+
+1. Constant exports
+
+math.ts
+
+```tsx
+export function add(x: number, y: number): number {
+    return x + y;
+}
+
+export function subtract(x: number, y: number): number {
+    return x - y;
+}
+```
+
+main.ts
+
+```tsx
+import { add } from "./math"
+
+add(1, 2)
+```
+
+2. Default exports
+
+```tsx
+export default class Calculator {
+    add(x: number, y: number): number {
+        return x + y;
+    }
+}
+```
+
+calculator.ts 
+
+```tsx
+
+import Calculator from './Calculator';
+
+const calc = new Calculator();
+console.log(calc.add(10, 5));
 ```
