@@ -212,6 +212,8 @@ function identity<T>(arg: T): T {
 
 let output1 = identity<string>("myString");
 let output2 = identity<number>(100);
+
+output1.toUpperCase();  // Now we can do this without any error
 ```
 
 3. Solution to original problem
@@ -222,8 +224,14 @@ function getFirstElement<T>(arr: T[]) {
     return arr[0];
 }
 
-const el = getFirstElement(["harkiratSingh", "ramanSingh"]);
-console.log(el.toLowerCase())
+const el = getFirstElement(["harkiratSingh", "ramanSingh"]); // We don't need to explicitly provide "<string>" after getFirstElement because typescript automatically figure it out. But also we can provide. 
+
+const el2 = getFirstElement([1,2,3]); // And now the type of el2 is number
+
+const el3 = getFirstElement([true, false]); // And now the type of el3 is boolean
+
+console.log(el.toLowerCase()) // This does not give error any more. Because el is of type string it is no longer of type number. 
+
 ```
 
 Did the issues go away?
