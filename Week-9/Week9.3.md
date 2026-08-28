@@ -287,7 +287,7 @@ export function subtract(x: number, y: number): number {
     return x - y;
 }
 
-export const a = 1;
+export const a = 1;  // if you export like this then to import this file we need to destructor it
 ```
 
 main.ts
@@ -297,7 +297,8 @@ const express = require("express") // Before we are doing this
 import express from "express";   // we can also do this
 
 // And to install express in typescript the command is - npm install express @types/express
-import { add } from "./math"
+
+import { add } from "./math"  // destructor object
 
 add(1, 2)
 ```
@@ -316,8 +317,29 @@ calculator.ts
 
 ```tsx
 
-import Calculator from './Calculator';
+import Calculator from './Calculator';  // we don't have to destructed the object. We can import it by default and we can name it whatever we want
 
 const calc = new Calculator();
 console.log(calc.add(10, 5));
 ```
+
+3. Constant export with default export 
+
+```tsx 
+export default const a = 1;
+
+export const b = 3;
+
+```
+
+
+```tsx 
+
+import amit, { b } from "./b";
+console.log(amit)
+console.log(b)
+
+
+```
+
+output: 1, 3
