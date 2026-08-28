@@ -286,11 +286,17 @@ export function add(x: number, y: number): number {
 export function subtract(x: number, y: number): number {
     return x - y;
 }
+
+export const a = 1;
 ```
 
 main.ts
 
 ```tsx
+const express = require("express") // Before we are doing this
+import express from "express";   // we can also do this
+
+// And to install express in typescript the command is - npm install express @types/express
 import { add } from "./math"
 
 add(1, 2)
