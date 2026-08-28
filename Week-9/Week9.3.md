@@ -230,6 +230,17 @@ const el2 = getFirstElement([1,2,3]); // And now the type of el2 is number
 
 const el3 = getFirstElement([true, false]); // And now the type of el3 is boolean
 
+const el4 = getFirstElement(["harkiratSingh", "ramanSingh", 1,2]); // We can do this it will assume the template is string or number just like the below example. So if you want to prevent the problem of mixed bag you should explicitly tell here the template is a string so that anyone cannot give something other than string - const el = getFirstElement<string>(["harkiratSingh", "ramanSingh"]);
+
+const el4 = getFirstElement<(string | number)>(["harkiratSingh", "ramanSingh"]);
+
+interface User {
+    name: string
+}
+
+const el5 = getFirstElement<User>([{name: "Amit"}]); // This does not necessarily need to be primitive value like a string or a number can be a complex value.
+el5.name
+
 console.log(el.toLowerCase()) // This does not give error any more. Because el is of type string it is no longer of type number. 
 
 ```
