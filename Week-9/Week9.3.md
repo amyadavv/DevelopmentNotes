@@ -170,7 +170,7 @@ const el = getFirstElement([1, 2, 3, "Amit"]);
 
 What is the problem in this approach?
 
-- Problem 1: 
+- Problem 1: User can send different types of values in inputs, without any type errors
 
 ```tsx
 type Input = number | string;
@@ -186,7 +186,7 @@ console.log(el.toUpperCase());
 // Given an Input array output is going to be Input and since Input can either be a number or a string typescript prevent calling toUpperCase(). Number pe we cannot call uppercase. 
 ```
 
-- Problem 2: User can send different types of values in inputs, without any type errors. Typescript isn’t able to infer the right type of the return type
+- Problem 2: Typescript isn’t able to infer the right type of the return type
 
 Solution :
 
@@ -199,6 +199,8 @@ const el = getFirstElement(["Amit", "Yadav"]);
  
 ```
 
+But generic is a better way to solve this problem.
+
 2. Solution - Generics
 Generics enable you to create components that work with any data type while still providing compile-time type safety.
 Simple example - 
@@ -210,4 +212,40 @@ function identity<T>(arg: T): T {
 
 let output1 = identity<string>("myString");
 let output2 = identity<number>(100);
+```
+
+3. Solution to original problem
+Can you modify the code of the original problem now to include generics in it?
+
+```tsx
+function getFirstElement<T>(arr: T[]) {
+    return arr[0];
+}
+
+const el = getFirstElement(["harkiratSingh", "ramanSingh"]);
+console.log(el.toLowerCase())
+```
+
+Did the issues go away?
+
+User can send different types of values in inputs, without any type errors
+
+```tsx
+function getFirstElement<T>(arr: T[]) {
+    return arr[0];
+}
+
+const el = getFirstElement<string>(["harkiratSingh", 2]);
+console.log(el.toLowerCase())
+```
+
+Typescript isn’t able to infer the right type of the return type
+
+```tsx
+function getFirstElement<T>(arr: T[]) {
+    return arr[0];
+}
+
+const el = getFirstElement(["harkiratSingh", "ramanSingh"]);
+console.log(el.toLowerCase())
 ```
