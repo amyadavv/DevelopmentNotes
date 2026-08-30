@@ -98,3 +98,17 @@ export async function getClient () {
 }
 
 ```
+
+# Insert 
+
+Insert commands: 
+
+1. INSERT INTO todos, (title, description, user_id, done) 
+   VALUES ('Buy groceries', 'Milk, bread, and eggs', 1, FALSE);
+
+2. INSERT INTO users (username, email, password) 
+   VALUES ('amyadavv', 'amyadav319@gmail.com', 'hashed_password');
+
+
+- If you try to insert a todo and put user_id in the INSERT command that does not exists in the users table then the INSERT command will give error. Because todos table have very strict schema that whenever we add a todo and in the INSERT command there should be a user_id which have a entry in the users table. It won't let you do insert unless there is a entry in a users table. 
+- Similarly if you try to delete a user who has a bunch of todos it will complain that there are some todos already for this user,  first delete those todos only then you can delete the user
