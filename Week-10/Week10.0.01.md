@@ -111,4 +111,26 @@ Insert commands:
 
 
 - If you try to insert a todo and put user_id in the INSERT command that does not exists in the users table then the INSERT command will give error. Because todos table have very strict schema that whenever we add a todo and in the INSERT command there should be a user_id which have a entry in the users table. It won't let you do insert unless there is a entry in a users table. 
-- Similarly if you try to delete a user who has a bunch of todos it will complain that there are some todos already for this user,  first delete those todos only then you can delete the user
+- Similarly if you try to delete a user who has a bunch of todos it will complain that there are some todos already for this user,  first delete those todos only then you can delete the user. That is the benefit that REFERENCE provide 
+
+Example - 
+
+```jsx 
+
+import { getClient } from "./utils";
+
+async function createEntries() {
+    const client = await getClient();
+    const insertUserText = 'INSERT INTO users (username, email, password) VALUES ($1, $2) RETURNING id';
+    const userValues = ['amyadav@gamil.com', 'hashed_password'];
+
+    let response = await client.query(insertUserText, userValues);
+
+    const insertTodoText = 'INSERT INTO users (title, description, user_id, done) VALUES ('$1', '$2', '$3', '$4') RETURNING id';
+    const todoValues = ['Buy groceries', 'Milk, bread, and eggs', response.rows[0].id, false];
+    await client.query(insertTodoText, todoValues);
+
+    console.log("Entries created!");
+}
+
+```
