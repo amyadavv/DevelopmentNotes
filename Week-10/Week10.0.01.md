@@ -51,3 +51,32 @@ npm install @types/pg
 - DEFAULT means there will be always a default value in the row, it does not matter weather the user provide the row value or not. In this case it will be FALSE by DEFAULT. 
 - user_id is a foreign key, and this foreign key is the primary key in the users table REFERENCE means it reference to the user table id. This means that this todos table is related to the users table by user_id as a foreign key and INTEGER means it will be a number. 
 
+Example - 
+
+async function createTable() {
+    const client await getClient();
+    const createUse TableQuery = `
+        CREATE TABLE users ( 
+            id SERIAL PRIMARY KEY, 
+            email VARCHAR(255) UNIQUE NOT NULL, 
+            password VARCHAR(255) NOT NULL 
+            );
+    `;
+
+    await client.query(createUserTableQuery);
+
+    const createTodosQuery = `
+        CREATE TABLE todos (   
+            id SERIAL PRIMARY KEY, 
+            title TEXT NOT NULL, 
+            description TEXT, 
+            user_id INTEGER REFERENCES users(id), 
+            done BOOLEAN DEFAULT FALSE 
+        );
+    `;    
+
+await client.query(createTodosQuery);
+
+console.log("Table created successfully!");
+
+}
