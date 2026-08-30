@@ -28,10 +28,22 @@ npm install @types/pg
 
 # Create Table
 
-CREATE TABLE users (
+1. CREATE TABLE users (
     id  SERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL
 );
 
-We need to tell postgres that this is our database looks like. Biggest difference between sql and no sql databases is before you started to write you applications you have to tell postgres that this is a new table this is what it looks like, it is different from mongo where we put whatever data we want and it never worried about the schema. In place of SQL we have to tell these are my fields these are what they look like before you do any insert operations, get operations, update operations we need to tell postgres this is my schema of my database.
+- We need to tell postgres that this is our database looks like. Biggest difference between sql and no sql databases is before you started to write you applications you have to tell postgres that this is a new table this is what it looks like, it is different from mongo where we put whatever data we want and it never worried about the schema. In place of SQL we have to tell these are my fields these are what they look like before you do any insert operations, get operations, update operations we need to tell postgres this is my schema of my database.
+
+- There are multiple ways to create string in postgres/sql and VARCHAR(255) (character length of 255) is the most popular one. 
+
+2. CREATE TABLE todos (
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT,
+    user_id INTEGER REFERENCE users(id),
+    done BOOLEAN DEFAULT FALSE 
+)
+
+- We can use text here, TEXT has no limit of how long it can be but VARCHAR has limit
