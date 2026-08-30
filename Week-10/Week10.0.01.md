@@ -33,3 +33,5 @@ CREATE TABLE users (
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL
 );
+
+We need to tell postgres that this is our database looks like. Biggest difference between sql and no sql databases is before you started to write you applications you have to tell postgres that this is a new table this is what it looks like, it is different from mongo where we put whatever data we want and it never worried about the schema. In place of SQL we have to tell these are my fields these are what they look like before you do any insert operations, get operations, update operations we need to tell postgres this is my schema of my database.
