@@ -53,6 +53,8 @@ npm install @types/pg
 
 Example - 
 
+```jsx 
+
 async function createTable() {
     const client await getClient();
     const createUse TableQuery = `
@@ -80,3 +82,19 @@ await client.query(createTodosQuery);
 console.log("Table created successfully!");
 
 }
+
+```
+
+utils.ts (connection) - 
+
+```jsx 
+
+import { Client } from 'pg';
+
+export async function getClient () {
+    const client = new client ("connection string");
+    await client.connect();
+    return client;
+}
+
+```
