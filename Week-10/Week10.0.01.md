@@ -49,4 +49,5 @@ npm install @types/pg
 - We can use text here, TEXT has no limit of how long it can be but VARCHAR has limit
 - BOOLEAN means we need to put true or false value in it
 - DEFAULT means there will be always a default value in the row, it does not matter weather the user provide the row value or not. In this case it will be FALSE by DEFAULT. 
-- user_id is a foreign key, and this foreign key is the primary key in the users table REFERENCE means it reference to the user table id. 
+- user_id is a foreign key, and this foreign key is the primary key in the users table REFERENCE means it reference to the user table id. This means that this todos table is related to the users table by user_id as a foreign key and INTEGER means it will be a number. 
+
