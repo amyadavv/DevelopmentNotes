@@ -20,3 +20,8 @@ Relationships - You break data into multiple table and these table some how rela
 4. Get
 
 # pg Library 
+
+Create an empty Nods.js Project. Install pg (Think of it as mongoose for Postgres)
+
+npm install pg
+npm install @types/pg
