@@ -134,3 +134,5 @@ async function createEntries() {
 }
 
 ```
+
+RETURNING id - means after the query is done return me the ID of the new user that is created we can also return other values such as 'email' or use '*' which gives you everything.
