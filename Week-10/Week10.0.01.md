@@ -140,3 +140,25 @@ RETURNING id - means after the query is done return me the ID of the new user th
 Question - Why are we using userValues separately why can't we just add email and password directly in the insertUserText in place of $1 $2?
 
 The reason is sql injection. We can totally do this - INSERT INTO users (email, password) VALUES ("amyadav@gamil.com", "hashed_password") RETURNING id; but the problem is email and password we get from the user from frontend, user can simply write something bad here - INSERT INTO users (email, password) VALUES ("amyadav@gamil.com AND DROP TABLE users;", "hashed_password") and if we send this query to the database so it will drop/delete user table. So in sql injection we letting users inject SQL into our backend which is why, the standard way to fix it is to put this "$1 $2" variable templates here and the values of this templates are 'userValues'. So if the users send you the ("amyadav@gamil.com AND DROP TABLE users;", "hashed_password") so it is as such stored in the database. So whatever here in the 'userValues' does not got executed, its upfront a value that means it will go as such in the database. 
+
+# Gets
+
+SELECT * FROM todos WHERE user_id = desired_user_id;
+
+Code: 
+
+```jsx
+
+async function getTodosForUser (userId: number) {
+    const client = await getClient;
+
+    const selectTodosText = 'SELECT * FROM todos WHERE user_id = $1';
+    const todoRes = await client.query(selectTodosText, [userId]);
+
+    console.log(`Todos for User ID ${userId}:`);
+    for(let todo of todoRes.rows) {
+        console.log(`ID : ${todo.id}, Title: ${todo.tile}, Description: ${todo.description}, Done: ${todo.done}`);
+    }
+}
+
+```
