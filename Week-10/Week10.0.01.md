@@ -289,7 +289,6 @@ async function getUserAndTodosWithJoin (userId: number) {
 
 import { getClient } from "./utils";
 
-// Get all todos for a given user. This should not return a row if no todos exist for the user.
 async function getAllTodosWithUserDetails () {
     const client = await getClient();
 
