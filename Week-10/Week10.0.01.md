@@ -307,3 +307,31 @@ async function getAllTodosWithUserDetails () {
 getAllTodosWithUserDetails();
 
 ```
+
+# Indexes 
+
+1. Make query on a certain column faster
+2. In our case we can add an index like below
+3. Since we're using postgres, it doesn't matter since the foreign key relation creates an index by default 
+
+``` jsx
+
+async function addIndex () {
+    const client = await getClient();
+
+    const createIndexQuery = 'CREATE INDEX idx_todos_user_id ON todos(user_id)';
+    await client.query(createIndexQuery);
+
+    console.log("Index added successfully on user_id column of todos table!");
+}
+addIndex();
+
+```
+
+# Problems ?
+
+1. You have to write raw sql queries
+2. Migrations are hard
+3. You don't get the best types
+
+Solutions - ORMs
