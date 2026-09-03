@@ -198,3 +198,7 @@ async function deleteTodo (todoId: number) {
 }
 
 ```
+
+# DROP
+
+DROP TABLE IF EXISTS todos;
