@@ -226,6 +226,30 @@ CREATE TABLE todos (
 
 Question : Get me the email of the user and all their todos
 
+```jsx
+
+import { getClient } from "./utils";
+
+async function getUserAndTodosWithJoin (userId: number) {
+    const client = await getClient();
+
+    const joinQuery = `
+        SELECT users.*, todos.title, todos.description, todos.done
+        FROM users
+        LEFT JOIN todos ON user.id = todos.user_id
+        WHERE user.id = $1; 
+    `;
+
+    const res = await client.query(joinQuery, [userId]);
+    const result = res.rows;
+
+    console.log("User and Todos:", result);
+}
+
+```
+
+users.*, - means everything from the users table.
+
 
 
 
