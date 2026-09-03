@@ -284,3 +284,27 @@ async function getUserAndTodosWithJoin (userId: number) {
 }
 
 ```
+
+```jsx
+
+import { getClient } from "./utils";
+
+// Get all todos for a given user. This should not return a row if no todos exist for the user.
+async function getAllTodosWithUserDetails () {
+    const client = await getClient();
+
+    const joinQuery = `
+        SELECT todos.*, users.email, users.password
+        FROM todos
+        JOIN users ON todos.user_id = user.id;
+    `;
+
+    const res = await client.query(joinQuery);
+    const result = res.rows;
+
+    console.log("Todos with User Details:", result);
+}
+
+getAllTodosWithUserDetails();
+
+```
