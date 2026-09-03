@@ -202,3 +202,32 @@ async function deleteTodo (todoId: number) {
 # DROP
 
 DROP TABLE IF EXISTS todos;
+
+This will completely remove the table. 
+
+# Foreign Keys
+
+How to relate (join) data?
+
+Foreign Keys - 
+
+CREATE TABLE todos (
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT, 
+    user_id INTEGER REFERENCES users(id),
+    done BOOLEAN DEFAULT FALSE
+)
+
+# Joins
+
+1. Make query faster if are using joins the right way
+2. Decrease the number of database calls that we are doing
+
+Question : Get me the email of the user and all their todos
+
+
+
+
+
+
