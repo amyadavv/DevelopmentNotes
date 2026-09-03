@@ -173,12 +173,28 @@ async function updateTodo (todoId: number) {
     const client = await getClient();
 
     const updateTodoText = 'UPDATE todos SET done = $1 WHERE id = $2';
-    await client.query(updateTodoText, [false, todoId]);
+    await client.query(updateTodoText, [true  , todoId]);
 
     console.log(`Todo with ID ${todoId} updated to not done!`);
 }
 
 const todoIdToUpdate = 3;
 updateTodo(todoIdToUpdate);
+
+```
+
+# Delete 
+
+DELETE FROM todos WHERE id = id;
+
+``` jsx
+
+async function deleteTodo (todoId: number) {
+    const client = await getClient();
+    const deleteTodoText = 'DELETE FROM todos WHERE id = $1';
+    await client.query(deleteTodoText, [todoId]);
+
+    console.log(`Todo with ID ${todoId} deleted`);
+}
 
 ```
