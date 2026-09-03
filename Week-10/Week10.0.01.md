@@ -230,6 +230,7 @@ Question : Get me the email of the user and all their todos
 
 import { getClient } from "./utils";
 
+// Get all todos for a given user. This needs to ensure that every user comes at least once.
 async function getUserAndTodosWithJoin (userId: number) {
     const client = await getClient();
 
@@ -247,8 +248,14 @@ async function getUserAndTodosWithJoin (userId: number) {
 }
 
 ```
-
 users.*, - means everything from the users table.
+
+## Types of JOINS
+
+1. FULL JOIN - Should be present in either tables
+2. INNER JOIN - Should be present in both the tables
+3. LEFT JOIN - Should have all entries from left table
+4. RIGHT JOIN - Opposite of left join 
 
 
 
