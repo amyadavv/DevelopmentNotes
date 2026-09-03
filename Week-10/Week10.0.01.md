@@ -257,8 +257,30 @@ users.*, - means everything from the users table.
 3. LEFT JOIN - Should have all entries from left table
 4. RIGHT JOIN - Opposite of left join 
 
+By default if we write just JOIN it is same as writing INNER JOIN.
 
 
+Inner join example : 
 
+```jsx
 
+import { getClient } from "./utils";
 
+// Get all todos for a given user. This should not return a row if no todos exist for the user.
+async function getUserAndTodosWithJoin (userId: number) {
+    const client = await getClient();
+
+    const joinQuery = `
+        SELECT users.*, todos.title, todos.description, todos.done
+        FROM users
+        INNER JOIN todos ON user.id = todos.user_id
+        WHERE user.id = $1; 
+    `;
+
+    const res = await client.query(joinQuery, [userId]);
+    const result = res.rows;
+
+    console.log("User and Todos:", result);
+}
+
+```
