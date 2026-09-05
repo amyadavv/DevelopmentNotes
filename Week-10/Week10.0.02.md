@@ -19,8 +19,16 @@ Prisma - It is next generation Node.js and typescript ORM. Prisma unlocks a new 
 3. Support
 4. Maturity and stability
 
-# Prima Libraries
+# Prisma Libraries
 
 1. Prisma Client : Auto-generated and type-safe query builder for node.js and typescript. 
-2. Prisma Migrate: Migration tool to easily evolve your database schema from prototyping to production. If we change database schema ever it will create migration files that we can simply run on the production database we don't have to manually go to the production database and write queries. Whenever we want to add new table we added some where in prisma
-3. Prisma Studio: GUI to view and edit data in your database. 
+2. Prisma Migrate: Migration tool to easily evolve your database schema from prototyping to production. If we change database schema ever it will create migration files that we can simply run on the production database we don't have to manually go to the production database and write queries. Whenever we want to add new table we added some where in prisma and prisma takes care of creating these queries you run a single command it apply those to our database. 
+3. Prisma Studio: GUI to view and edit data in your database. Similar to mongoDB compass.
+
+# Automated migrations?
+
+DB changes often, you add more columns, add new tables, you have to do MIGRATIONS to keep syncing the DB state. 
+
+Pre ORM days - Manually update the prod DB, dev DB.
+
+There was no log of the changes made to the DB.
