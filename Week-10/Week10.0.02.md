@@ -25,10 +25,16 @@ Prisma - It is next generation Node.js and typescript ORM. Prisma unlocks a new 
 2. Prisma Migrate: Migration tool to easily evolve your database schema from prototyping to production. If we change database schema ever it will create migration files that we can simply run on the production database we don't have to manually go to the production database and write queries. Whenever we want to add new table we added some where in prisma and prisma takes care of creating these queries you run a single command it apply those to our database. 
 3. Prisma Studio: GUI to view and edit data in your database. Similar to mongoDB compass.
 
-# Automated migrations?
+# Automated Migrations?
 
 DB changes often, you add more columns, add new tables, you have to do MIGRATIONS to keep syncing the DB state. 
 
-Pre ORM days - Manually update the prod DB, dev DB.
+Pre ORM days - Manually update the prod DB, dev DB. 
 
-There was no log of the changes made to the DB.
+There was no log of the changes made to the DB. 
+
+ORM - It maintains a very nice log of your database, how it is changed overtime and we have to run a single command it will apply migrations on it. 
+
+Note: Big thing to note - You need full access of postgres for the to work. You can either run it locally or buy a full db.
+
+
