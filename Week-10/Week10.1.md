@@ -3,7 +3,26 @@
 
 There are a few types of databases, all service different types of use-cases
 
-NoSQL databases
+## NoSQL databases
 
 1. Store data in a schema-less fashion. Extremely lean and fast way to store data. 
 2. Examples - MongoDB
+
+## Graph database 
+
+1. Data is stored in the Data is stored in the form of a graph. Specially useful in cases where relationships need to be stored (social networks).
+2. Examples - Neo4j
+ 
+
+## Vector databases
+
+1. Stores data in the form of vectors
+2. Useful in Machine learning
+3. Examples - Pinecone
+
+## SQL databases
+
+1. Stores data in the form of rows
+2. Most full stack applications will use this
+3. Examples - MySQL, Postgres
+ 
