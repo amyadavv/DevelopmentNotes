@@ -26,4 +26,29 @@ There are a few types of databases, all service different types of use-cases
 2. Most full stack applications will use this. And its very strict. 
 3. Examples - MySQL, Postgres
 4. We store data is rows and data is string, number, boolean, we usually don't store JSON or array  in SQL db, there are ways to do it but in SQL we don't do it. 
+
+# Why not NoSQL 
+
+1. You might’ve used MongoDB. 
+2. It’s schemaless properties make it ideal to for bootstraping a project fast.
+3. But as your app grows, this property makes it very easy for data to get corrupted.
+ 
+## What is schemaless?
+
+Different rows can have different schema (keys/types)
+
+
+## Problems?
+
+1. Can lead to inconsistent database
+2. Can cause runtime errors 
+3. Is too flexible for an app that needs strictness
+ 
+## Upsides?
+
+1. Can move very fast
+2. Can change schema very easily
+ 
+You might think that mongoose does add strictness to the codebase because we used to define a schema there. 
+That strictness is present at the Node.js level, not at the DB level. You can still put in erroneous data in the database that doesn’t follow that schema.
  
