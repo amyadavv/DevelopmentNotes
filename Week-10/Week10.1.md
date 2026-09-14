@@ -23,6 +23,7 @@ There are a few types of databases, all service different types of use-cases
 ## SQL databases
 
 1. Stores data in the form of rows
-2. Most full stack applications will use this
+2. Most full stack applications will use this. And its very strict. 
 3. Examples - MySQL, Postgres
+4. We store data is rows and data is string, number, boolean, we usually don't store JSON or array  in SQL db, there are ways to do it but in SQL we don't do it. 
  
