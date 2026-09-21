@@ -66,8 +66,3 @@ So there are 4 parts when using an SQL database (not connecting it to Node.js, j
 3. Creating a table and defining it’s schema.
 4. Run queries on the database to interact with the data (Insert/Update/Delete)
  
-
-
-rkfjnrkf
-
- ksjnoswnfoiwe
