@@ -66,3 +66,15 @@ So there are 4 parts when using an SQL database (not connecting it to Node.js, j
 3. Creating a table and defining it’s schema.
 4. Run queries on the database to interact with the data (Insert/Update/Delete)
  
+
+Connection string - postgresql://neondb_owner:npg_aCr6N4DRdSzo@ep-broad-truth-b4zh4qvq-pooler.c-6.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+
+# Using a library that let’s you connect and put data in it
+
+1. psql - psql is a terminal-based front-end to PostgreSQL. It provides an interactive command-line interface to the PostgreSQL (or TimescaleDB) database. With psql, you can type in queries interactively, issue them to PostgreSQL, and see the query results.
+How to connect to your database?
+psql Comes bundled with postgresql. You don’t need it for this tutorial. We will directly be communicating with the database from Node.js
+psql -h p-broken-frost-69135494.us-east-2.aws.neon.tech -d database1 -U 100xdevs
+
+ 
+2. pg - pg is a Node.js library that you can use in your backend app to store data in the Postgres DB (similar to mongoose). We will be installing this eventually in our app.
