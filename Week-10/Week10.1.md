@@ -1,4 +1,4 @@
-# Types of Databases
+anit# Types of Databases
 
 There are a few types of databases, all service different types of use-cases
 
@@ -132,3 +132,4 @@ CREATE TABLE users (
 Then try running 
 \dt;
 to see if the table has been created or not
+
