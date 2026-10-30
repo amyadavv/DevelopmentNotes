@@ -1,3 +1,5 @@
+// Defination - Debouncing is a function that delays the execution of a function until a certain period of inactivity has passed, preventing it from running too frequently during rapid events.
+
 function debounce (fn, delay) {
     let timerId;
     return function (...args) {
@@ -19,7 +21,7 @@ searchWithDebounce('Hard');
 searchWithDebounce('Hard JS');
 searchWithDebounce('Hard JS Interview');
 searchWithDebounce('Hard JS Interview question');
-searchWithDebounce('Hard JS Interview question for practice');
+searchWithDebounce('Hard JS Interview question for practice', 'Hard');
 
 
 //  example - in google if we search for something then when we type something on the search box then the suggestion does not come on the spot a slightly delay is there in the suggestion. This is where debounce is useful. When we want some delay in something, like in api call then we implement debounce.
