@@ -96,8 +96,7 @@ const Headers = React.memo(function Headers(props) {
   )
 })
 
-
-React have a virtual dom and whenever the state changes it calculate the difference between the original dom and virtual dom and updates the dom.
+React has a Virtual DOM. Whenever the state changes, React creates a new Virtual DOM and compares it with the previous Virtual DOM. It then identifies the changes and updates only the required parts of the Real DOM.
 
 ## Keys in react
 
