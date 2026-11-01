@@ -1,5 +1,3 @@
-No—that’s a common misconception.
-
 A **JWT (JSON Web Token)** is **not encrypted by default**, it’s only **encoded + signed**.
 
 ### What actually happens:
@@ -204,20 +202,6 @@ Good payload:
 * But you **can’t change it without breaking the seal (signature)**
 
 ---
-
-## If you want next level (useful for interviews)
-
-I can explain:
-
-* Difference between **JWT vs Sessions**
-* What is **access token vs refresh token**
-* How JWT is used in **MERN + WebSocket projects**
-
-Just tell me 👍
-
-
-
-
 
 
 Yes, you’re absolutely right 👍 — you **can get the value using `jwt.verify()` as well**, and that’s actually the **correct and safe way**.

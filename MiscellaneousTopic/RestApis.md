@@ -1,10 +1,3 @@
-# REST API (Representational State Transfer) - Complete Notes
-
-> **Last Updated:** 8 July 2026
-
----
-
-
 # What is REST API?
 
 **REST (Representational State Transfer)** is an **architectural style** used to design APIs that allow communication between a client and a server over HTTP.
@@ -33,16 +26,8 @@ Many beginners confuse REST and HTTP.
 | Defines how APIs should be designed | Transfers data between client and server |
 | Uses HTTP | Actually performs the communication |
 
-### Simple Analogy
-
-Imagine ordering food online.
-
-- **REST** = The restaurant's ordering rules
-- **HTTP** = The delivery person carrying your order
-
 REST defines **how communication should happen**, while HTTP actually **transfers the data**.
 
----
 
 # How REST API Works
 
@@ -80,7 +65,7 @@ Client
 
 REST APIs mainly use **five HTTP methods**.
 
-| Method | Purpose | CRUD |
+| Method | Purpose | CRUD |,
 |---------|----------|------|
 | GET | Retrieve data | Read |                  - Safe, Idempotent, Does not modify data
 | POST | Create data | Create |                 - Creates new data, Not Safe, Not Idempotent
